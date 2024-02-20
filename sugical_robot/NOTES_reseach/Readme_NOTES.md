@@ -14,6 +14,8 @@ NOTES手术机器人需要有：可操作性、独立的摄像头铰接、三角
 
 ![](https://media.springernature.com/lw685/springer-static/image/art%3A10.1007%2Fs00464-014-3816-z/MediaObjects/464_2014_3816_Fig1_HTML.gif?as=webp)
 
+
+
 ## 总结
 
 操，这么多手术机器人，看到什么时候去了，看完是不是可以直接写论文
