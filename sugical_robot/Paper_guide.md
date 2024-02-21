@@ -4,7 +4,7 @@
 
 * [2015年NOTES手术机器人综述](https://link.springer.com/article/10.1007/s00464-014-3816-z)
 
-  从自由度、三角测量性、分节几个方面总结了常见的手术机器人，特征上比较有参考性，但是文章太老了，不具有实时性
+  从自由度、**三角测量性**、分节几个方面总结了常见的手术机器人，特征上比较有参考性，但是文章太老了，不具有实时性
 
 * [介绍NOTES的综述](https://journals.lww.com/annalsofsurgery/pages/articleviewer.aspx?year=2008&issue=04000&article=00005&type=Fulltext)
 
@@ -17,4 +17,16 @@
 * [2015NOTES综述](https://academic.oup.com/bjs/article/102/2/e73/6141439#228305613)
 
   介绍了NOTES的历史，各个种类，以及存在的挑战
+  
+* [2023年-一种新型连续体外套管，具有改进的三角测量功能，适用于柔性机器人内窥镜检查](https://ieeexplore.ieee.org/abstract/document/10180212)
+
+  阐述了一种远端设计可以实现改进的三角测量
+
+* [纯介绍三角测量的](https://link.springer.com/article/10.1007/s00464-011-1650-0)
+
+  也介绍了NOTES的优势
+
+  
+
+  
 
