@@ -1,4 +1,4 @@
-# 论文撰写—一种外骨骼式手术机器人操作台设计
+# 论文撰写—一种应用于NOTES手术机器人的外骨骼式主操作台设计
 
 ## 摘要
 
@@ -32,7 +32,7 @@ Flexible instruments with steerable heads and multi-instrument flexible devices 
 
 主端操纵台的功能是精准捕捉并映射操纵者控制指令，力求满足人体工程学设计，避免影响手术医生上肢自由运动。合理的映射策略能够使得外科医生直观的进行操作，以减少学习曲线并提高手术的安全可靠性[]。在自由度布局上，末端执行器的自由度分布与人体手臂自由度[Fig.2(b)]极为类似，为了和人体手臂有较好的适配性，同时提供简单的映射策略，我们对操纵台的关节进行了初步的布局如下图Fig2(c)。
 
-三者之间自由度的联系如下：操纵者将手肘“固定”在“搭载台”上以后，可以利用肩关节和手肘关节配合实现前后和内外翻转运动，并驱动操纵台“搭载台”下的两个正交的平动关节，对应手术机器人末端的前后伸缩，以及负责调控三角测量性近端连续体的偏转；手指握在pincher formation处，配合手腕的关节实现yaw,pitch, rolling 三个方向的运动，驱动操纵台前端三轴交于一点的“三连杆”对应的旋转关节，实现执行端前端连续体的两个方向偏转及其末端手术器械的绕轴旋转。
+三者之间自由度的联系如下：操纵者将手肘“固定”在“搭载台”上以后，利用肩关节和手肘关节配合实现前后和内外翻转运动，并驱动操纵台“搭载台”下的两个正交的平动关节，对应手术机器人末端的前后伸缩，以及负责调控三角测量性近端连续体的偏转；手指握在pincher formation处，配合手腕的关节实现yaw,pitch, rolling 三个方向的运动，驱动操纵台前端三轴交于一点的“三连杆”对应的旋转关节，实现执行端前端连续体的两个方向偏转及其末端手术器械的绕轴旋转。
 
 
 
@@ -44,31 +44,58 @@ Flexible instruments with steerable heads and multi-instrument flexible devices 
 
 ___
 
-操纵台两个方向的平动均由两根平行的**导轨滑块**（MGW9，中国江苏）实现，相对于K-FLEX中单个导轨的设计，间隔一定距离的平行导轨可以避免手臂搭载时压力产生的倾覆力矩，每对导轨上的板子多采用铝合金材料，通过验证可以满足强度校验；导轨带来顺滑移动的同时，也带来了系统不稳定的问题，轻微的扰动即可导致末端出现预期以外的运动，因此在上述结构基础上，每个方向的平动都使用连接了**无刷电机**（瓴控，中国上海），并使用齿条齿轮机构作为传动机构。相对于编码器，在每个关节处配置无刷电机的好处是，关节抗外界干扰能力更强，同时电机能够实现更为复杂的控制，使得操纵台不仅是一个运动采集机构，同时也能实现一些交互控制，例如较为成熟的变阻抗控制，使得平动的关节的可以灵活的改变。
-
-——————
-
-这里还差一段
-
-——————
+操纵台两个正交方向的平动均由两根平行的**导轨滑块**（MGW9，中国江苏）实现，相对于K-FLEX中单个导轨的设计，间隔一定距离的平行导轨可以避免手臂搭载时压力产生的倾覆力矩，每对导轨上的板子多采用铝合金材料，通过验证可以满足强度校验；导轨带来顺滑移动的同时，也带来了系统不稳定的问题，轻微的扰动即可导致末端出现预期以外的运动，因此在上述结构基础上，每个方向的平动都使用连接了**无刷电机**（KMTECH，中国上海），并使用齿条齿轮机构作为传动机构。相对于编码器，在每个关节处配置无刷电机的好处是，关节抗外界干扰能力更强，同时电机能够实现更为复杂的控制，使得操纵台不仅是一个运动采集机构，同时也能实现一些交互控制，例如较为成熟的变阻抗控制，使得平动的关节的可以灵活的改变。
 
 与hand交互的三连杆，在原理上它与K-FLEX一样，但在此基础上我们做出了许多修改：首先我们额外增加了两条镜像连杆以及一些**“配重砝码**”，这样使得外部更美观，更重要的是增加结构的平衡性和稳定性，除此之外，更好的力量传递和控制是双边结构相对于单边结构的一个重要优势，双边结构可以实现分布式力量传递，即将力量从两侧均匀传递到目标区域，是可以让操纵者的操纵更加顺滑。
 
-其次，我们提出了一种创新的【pincher formation】结构(Fig3(b))，通常操纵者使用大拇指和食指握住【pincher formation】以控制末端器械如镊子的开合，而其他手指则处于蜷缩状态没有被利用，因此这里添加了一个类似于手枪把手的结构，操纵者可以使用中指扣住【扳机】，控制一些功能的开关，如手术时所必须的冲洗，吸收积液，充气等操作，为了灵活切换上述功能，在把手下端设置了一个【轮盘】来切换上述功能。上述零件受力较小，因此我们使用光造型树脂作为材料并以3D打印的方式制作，这种材料具有高精度、表面光滑、细节丰富、打印速度快以及可用于复杂结构的优点。
+前人设计的“finger gripper”结构通常是搭载在rolling连杆上的一个钳子形状的gripper，一般操纵者使用大拇指和食指握住以控制末端器械如镊子的开合，这使得其他手指则处于蜷缩的空闲状态没有被利用，我们提出了一种创新的【pincher formation】结构(Fig3(b))，给剩余三个手指提供抓握的同时，将它们利用起来完成其它的任务。这是一个类似于手枪把手的结构，操纵者可以使用中指扣住【扳机】，控制一些功能的开关，如手术时所必须的冲洗，吸收积液，充气等操作，为了灵活切换上述功能，在把手下端设置了一个【轮盘】来切换上述功能。上述零件受力较小，因此我们使用光造型树脂作为材料并以3D打印的方式制作，这种材料具有高精度、表面光滑、细节丰富、打印速度快以及可用于复杂结构的优点。
 
-上述整个结构可以简化为串联的五连杆，串联运动配置的优点是机械结构更简单，有利于制造并减少潜在故障点，从而减少所需的维护量[ ]，同时运动学模型和动力学模型较为简单，为后续人机交互控制降低难度。
+上述整个结构可以简化为串联的五连杆，Serial kinematic configurations的优点包括：机械结构更简单，有利于制造并减少潜在故障点，从而减少所需的维护量[ ]，同时运动学模型和动力学模型较为简单，为后续人机交互控制降低难度。
 
 无刷电机的内部集成了驱动板，使得整体结构更为紧凑，且驱动板内部集成FOC算法，仅需向其发送指令即可实现多种模式的控制，包括增量位置控制，绝对位置控制，速度控制和力矩控制；同时电机还集成了精度为18bit的绝对值磁编码器；我们使用STM32嵌入式单片机作为控制板，通过CAN通信协议控制和读取电机的状态。
 
+Here are the translations for the phrases you provided, suitable for use in a table and aiming for a natural and concise English expression:
 
+yaw link rotation
+
+
+
+- 肘部前后运动: Elbow Flexion/Extension
+- 肘部左右摆动: Elbow Abduction/Adduction
+- 手腕左右偏转: Wrist Ulnar/Radial Deviation
+- 手腕上下偏转: Wrist Flexion/Extension
+- 手腕绕轴转动: Wrist Pronation/Supination
+- 底座前后平移: Base Anteroposterior Translation
+- 底座左右平移: Base Lateral Translation
+- 手术臂伸缩: Surgical Arm Extension/Retraction
+- 近端展开: **Proximal Unfolding**  双臂展开怀抱和对应的反义词用英语怎么说
+- 远端左右偏转: Distal Lateral Deviation
+- 远端上下偏转: Distal Vertical Deviation
+- 手术器械绕轴转动: Instrument Rotation
+- 手术器械开合: Instrument Articulation/Open-Close
+
+These terms are succinct and are commonly used in descriptions of mechanical movements, particularly in the context of robotics and biomechanics.
 
 ## 手部震颤抑制
 
-震颤过滤是所有遥操纵的手术机器人需要共同面对的问题，在设备性能优良的情况下，操纵者手部的震颤成为了震颤的主要来源。生理性震颤（Physiologic Tremor）是一种生理性现象，是正常情况下每个人都会经历的微弱的震颤或颤动[3-0]。这种震颤的频率在8-12Hz之间，通常肉眼通常无法感知，但在手术的条件下，生理性震颤是不可忽视的不利因素，The trend towards the use of ‘minimally invasive surgery’ also tends to amplify tremor effects, due to the longer lever-arm action of typical laparoscopic instruments[3-1]，我们主要从软件和硬件两个方面对生理震颤的信号进行了处理，（这里缺少实验结果）。
+震颤过滤是所有遥操纵的手术机器人需要共同面对的问题，在设备性能优良的情况下，操纵者手部的震颤成为了震颤的主要来源。生理性震颤（Physiologic Tremor）是一种生理性现象，是正常情况下每个人都会经历的微弱的震颤或颤动[3-0]。这种震颤的频率在8-12Hz之间，通常肉眼通常无法感知，但在手术的条件下，生理性震颤是不可忽视的不利因素，The trend towards the use of ‘minimally invasive surgery’ also tends to amplify tremor effects, due to the longer lever-arm action of typical laparoscopic instruments[3-1].
+
+为了减弱指端生理震颤为手术带来的的影响，首先我们引入了卡尔曼滤波算法，在软件层面上削弱震颤信号的波形；The properties of tremor change with increasing muscle fatigue levels. Muscle fatigue induced hand tremor has highly nonlinear and nonstationary characteristics that need a filtering strategy different from the conventional filters，对此我们设计了一种肘部搭载的结构，可以显著避免手臂长时间悬空带来的疲劳，从而消除tremor。
 
 ### 自适应卡尔曼滤波
 
 单个电机的角度信号可以看作一阶系统，建立其状态方程及其对应的参数如下：
+$$
+\begin{cases}
+x_k = x_{k-1} \\
+        y_k = x_k
+\end{cases}
+$$
+
+$$
+F_k = 1; \quad H_k = 1; \quad G_k = 0; \quad u_k = 0;
+$$
+
 $$
 公式1；
 $$
@@ -84,13 +111,25 @@ $$
 
 图
 
+The angular signal from an individual motor is modeled as a first-order system, with its state equation and related parameters detailed subsequently.
+
+Employing the Kalman filter algorithm iteratively allows for the noticeable smoothing of jitter signals induced by physiological tremors. Renowned for its adaptability, effective handling of noise and uncertainties, and computational efficiency, the Kalman filter, however, faces two significant limitations. Firstly, akin to PID control, it necessitates manual adjustment of parameters Q and R, as delineated in equation 2. Secondly, achieving a balance between precision and filtering efficacy proves challenging. The filtering outcome is influenced by the Q-to-R ratio, where a lower ratio signifies a greater emphasis on the forecast value, enhancing interference resistance but sacrificing accuracy. In contrast, a higher ratio approximates the standard value more closely but diminishes the filter's effectiveness. While numerous adaptive Kalman filter enhancements have been proposed to overcome the first limitation, we address the second by introducing a straightforward model. This model easily differentiates between control waveforms and noise by recording the angular difference between two successive samples, thereby allowing for the real-time adjustment of Q and R based on this discrepancy.
+
 ### 搭载式
 
-生理抖动产生的一个原因是手部悬空[那本书]。通过观察可以发现，相较于手臂悬空状态，手臂被托举时操纵者手指末端的抖动幅度和频率更小，因此商业微创手术机器人的操纵台大多都设计了小臂托衬结构，该设计的另外一个优点是缓解手术时手臂维持长时间悬臂的疲劳。我们通过采集两种状态下电机的角度信息，计算出操纵台末端位置信息，并将其可视化在图中。
+生理抖动产生的一个原因是手部悬空[ref]。通过观察可以发现，相较于手臂悬空状态，手臂被托举时操纵者手指末端的抖动幅度和频率更小，因此商业微创手术机器人的操纵台大多都设计了小臂托衬结构，该设计的另外一个优点是缓解手术时手臂维持长时间悬臂的疲劳。我们通过采集两种状态下电机的角度信息，计算出操纵台末端位置信息，并将其可视化在图中。
 
 【这里需要实物，实验和分析】
 
+手臂长时间滞空导致的肌肉疲劳会加剧生理抖动，这也是为什么大多商业的微创手术机器人的操纵台配备了小臂托衬结构，这里我们设计了一个肘部托举结构，其作用除了托举操纵者手部，同时也作为一个“操纵杆”用于控制操纵器在正交导轨上的位置。为了防止操纵者在移动手肘的过程中不产生相对滑动导致脱落，这里设计了一个“紧固”结构，其工作原理如下：在操纵者将手肘搭载在“carrying disc”上后，在重力的压迫下，“carrying disc”随直线轴承向下运动，该运动由连杆传递到sliders，并通过连杆使一端固定的“four link”产生变形，该变形的最终结果是“elbow protector”向内收缩，从而加紧操纵者的肘部，当操纵者想脱离该结构时，将肘部竖直向上抽离即可。这样就做到了肘部在“穿戴”与“抽离”之间的自由切换。
 
+有一个致命的问题是，目前第二代的样机仍在搭建中，虽然能通过肉眼很直观的察觉到托举结构对手部震颤的改善，但缺少严谨的实验和实验结果来论证该结论，但这个空缺会在短期内完善。
+
+
+
+Muscle fatigue caused by the arm being suspended in the air for a long time will aggravate physiological jitter. This is why most commercial minimally invasive surgical robot consoles are equipped with a forearm support structure. Here we have designed an elbow support structure, whose function is in addition to lifting. The operator's hand also serves as a "joystick" to control the position of the manipulator on the orthogonal guide rail. In order to prevent the operator from relative sliding and falling off when moving the elbow, a "fastening" structure is designed here. Its working principle is as follows: after the operator places the elbow on the "carrying disc",  under the pressure from the gravity of arm, the "carrying disc" moves downward with the linear bearing. This movement is transmitted to the sliders by the connecting rod, and deforms the "four link" fixed at one end through the connecting rod. The final result of this deformation is that the "elbow protector" moves toward Contraction inward to tighten the operator's elbow. When the operator wants to escape from the structure, he can pull the elbow straight up and away. In this way, the elbow can be freely switched between "wearing" and "taking off".
+
+A fatal problem is that the second-generation prototype is still under construction. Although the improvement of hand tremor by the lifting structure can be intuitively detected with the naked eye, there is a lack of rigorous experiments and experimental results to prove this conclusion. This vacancy will be completed shortly.
 
 
 
@@ -98,15 +137,21 @@ $$
 
 这一部分主要介绍从主端操纵台的驱动空间[theta 1 ... theta 5] 到从端构型空间的映射策略，也即在检测到操纵者输入的控制指令后，从端柔性臂应该调整到什么位型。在手术机器人领域，目前主流的主从映射策略是保持主从两端姿态和位置相同：通过主端正运动学计算目标位姿，再使用从端逆运动学求解从端驱动空间。但是由于目前结构为5自由度，**为欠驱动状态（**Underactuated），因此主流方法不适用。我们采取的映射策略是保证主从两端的姿态保持一致同时伸缩按比例缩放，实现较好的“直觉操纵”。为了简化映射的复杂度，我们采用解耦的方法，将整体映射策略分远近两段的子映射，这个方法是可行的，在保证每个子映射策略符合“直觉操纵”的情况下，整体依然符合“直觉操纵”。
 
-图（）显示了主从系统的integrated kinematic drawing。对于主端刚性连杆结构，我们沿用DH标准为每个关节配置了坐标系，并构建了对应的DH table；对于从端柔性连续体，常规DH法存在什么问题[，因此对于从端模型我们采用的常曲率模型对其建模[ ]；在常曲率模型中，使用ks描述连续体偏离轴心的偏转角度，使用phi描述因为两个正交偏转叠加后产生的绕轴转动角度。对于如近端单自由度的连续体，phi可以是作为0。
+Fig.3 显示了主从系统的integrated kinematic drawing。对于主端刚性连杆结构，我们沿用DH标准为每个关节配置了坐标系，并构建了对应的DH table；
 
-柔性臂的伸缩和近端偏转可以完全解耦，只需进行简单的线性映射，即可满足柔性臂随操纵者手臂伸缩和偏转：
+对于从端柔性连续体，使用常规的DH会带来巨大的计算复杂度，这里我们采用更适用于连续体建模的常曲率模型[ ]。在常曲率模型中，使用ks描述连续体偏离轴心的偏转角度，使用phi描述因为两个正交偏转叠加后产生的绕轴转动角度。对于如近端单自由度的连续体，phi可以是视作0不变。
+
+前面两个自由度的运动较为简单，且两个映射完全解耦，因此分别进行简单的线性映射即可：
+
+主端console纵向平动与从端柔性臂的“伸缩“，以及主端横向的平动与柔性臂”近端偏转“的映射可以完全解耦，分别进行简单的线性映射即可：
 $$
 公式
 $$
 其中theta_max为近端连续体偏转的量程，dmax为导轨移动量程；
 
-为了保证主端R-P-Y“三连杆”与从端连续体由base到末端的姿态相同，需要保证其旋转矩阵R相同， 通过代数直接求解的方法不仅计算量大，同时还会存在无解的情况，因此这里引入几何法对其进行求解。首先我们描述一组Fig(  )中的运动：初始坐标系O经过绕y_0旋转θ_3和绕x_1旋转θ_4后形成坐标系O_2；另一方面，初始坐标系经过绕z_0旋转ϕ后形成坐标系O_1^a，再经过绕y_1^a旋转ks后得到坐标系O_2^a，观察两次坐标变换所得坐标系的z轴重合。实际上前者就是描述的三连杆转动yaw和rolling方向上关节对应的坐标变化，而后者是连续体在绳子驱动下偏转后产生的坐标变化，z轴重合代表两者末端朝向一致，不过两个坐标系在x-y轴平面上存在一个偏置(Fig)；只需要求解上述角度之间的关系，也即得到了映射函数，求解多次采用了【三余弦定理】，具体的求解过程在附件A中给出。
+为了保证主端R-P-Y“三连杆”与近端连续体姿态相同，一种方法是保证两者末端在其各自base坐标系旋下描述姿态的转矩阵R相同。 该问题通过代数直接求解的方法不仅计算量大，同时还会存在无解的情况，因此这里引入几何法对其进行求解。首先我们描述一组Fig(  )中的运动：初始坐标系O经过绕y_0旋转θ_3和绕x_1旋转θ_4后形成坐标系O_2；另一方面，初始坐标系经过绕z_0旋转ϕ后形成坐标系O_1^a，再经过绕y_1^a旋转ks后得到坐标系O_2^a，观察两次坐标变换所得坐标系的z轴重合。实际上前者就是描述的三连杆转动yaw和rolling方向上关节对应的坐标变化，而后者是连续体在绳子驱动下偏转后产生的坐标变化，z轴重合代表两者末端朝向一致，不过两个坐标系在x-y轴平面上存在一个偏置(Fig)；
+
+同样的，我们将图(a)中)O2 和 Oa2提取出来，构建新的几何关系。只需要求解上述两个空间夹角，即可得到了映射函数，对于这两个问题均可使用【三余弦定理】，这是一种通过构建投影求解空间夹角的方法，具体的求解过程在附件A中给出。
 $$
 公式
 $$
@@ -115,10 +160,11 @@ $$
 公式
 $$
 
+根据公式(9)推导的函数，我们使用matlab在同一个坐标系下分别绘制主从两端的坐标系Fig6(c)，符合我们的预期，也即z轴重合，x-y平面存在偏执，再结合公式(10-13)求解的x，得到Fig6(d)的结果——两个坐标系完全重合，证明映射的合理性。
 
 ## 结论
 
-
+在这篇文章中，我们提出了一种可以提供主动三角测量性的内窥镜的手术机械臂模型，并设计了一种适配于该类型手术机器人的穿戴式操纵台。在调试的过程中发现末端存在较为显著的震颤，并提出了两种方法改善生理抖动产生的震颤，为了之后主从遥操作做准备，推导了主从之间的映射函数。在后续的工作中会对样机的实体进行迭代，并完成空缺的实验，人机交互的控制策略正在研究中，致力于研发精准且舒适的主端操纵台。
 
 
 
@@ -149,3 +195,12 @@ $$
 
 
 [2-1] Kuniholm, J. F., Buckner, G. D., Nifong, W., & Orrico, M. (2005). Automated knot tying for fixation in minimally invasive, robot-assisted cardiac surgery.
+
+
+
+
+
+## 一些细节
+
+* 到底叫console好还是manipulator好
+* 
