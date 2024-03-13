@@ -6,6 +6,10 @@
 
 
 
+**3-8：结建立的动力学模型 of master console，我们使用我们的设备对手部生理震颤提出了评估，and address the hand tremor from both software and hardware perspectives** 
+
+通过分析主从端的运动学模型，我们建立了合适的mapping strategy, which showcases the system's intuitive operation.
+
 ## Introduce
 
 _____
@@ -80,7 +84,17 @@ These terms are succinct and are commonly used in descriptions of mechanical mov
 
 震颤过滤是所有遥操纵的手术机器人需要共同面对的问题，在设备性能优良的情况下，操纵者手部的震颤成为了震颤的主要来源。生理性震颤（Physiologic Tremor）是一种生理性现象，是正常情况下每个人都会经历的微弱的震颤或颤动[3-0]。这种震颤的频率在8-12Hz之间，通常肉眼通常无法感知，但在手术的条件下，生理性震颤是不可忽视的不利因素，The trend towards the use of ‘minimally invasive surgery’ also tends to amplify tremor effects, due to the longer lever-arm action of typical laparoscopic instruments[3-1].
 
-为了减弱指端生理震颤为手术带来的的影响，首先我们引入了卡尔曼滤波算法，在软件层面上削弱震颤信号的波形；The properties of tremor change with increasing muscle fatigue levels. Muscle fatigue induced hand tremor has highly nonlinear and nonstationary characteristics that need a filtering strategy different from the conventional filters，对此我们设计了一种肘部搭载的结构，可以显著避免手臂长时间悬空带来的疲劳，从而消除tremor。
+为了对surgeon的手部Physiologic Tremor进行evaluation，首先需要记录震颤活动，通常 accelerometry, electromyography (EMG), and other signals (such as force or gyroscopic measurements) are acquired, digitized through an analog-to-digital board and analyzed. 这种方法的问题是设备测量精度不够高，不能直接反应手部震颤的效果。在这里我们让surgeon手握"finger gripper"，通过记录各个关节的位置信息，结合master console的正向运动学，计算末端在空间中位置的变化，从而记录手部的震颤。
+
+
+
+【图片1：初步震颤】【图片2：悬空15min后震颤结果】
+
+
+
+
+
+为了减弱指端生理震颤为手术带来的的影响，首先我们引入了卡尔曼滤波算法，在软件层面上削弱震颤信号的波形
 
 ### 自适应卡尔曼滤波
 
@@ -200,7 +214,17 @@ $$
 
 
 
-## 一些细节
+## 一些细节+ 最终调整
 
 * 到底叫console好还是manipulator好
-* 
+
+
+
+
+
+* [ ] 修改tremor部分
+  * [ ] 文字修改
+  * [ ] 绘制FK模型，编写绘制末端位置的脚本，通过实验收集数据，得到xyz3维度图像
+  * [ ] 添加KF后的结果的图像
+  * [ ] 
+* [x] 

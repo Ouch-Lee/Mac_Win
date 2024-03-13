@@ -25,8 +25,10 @@
 #ifndef _USART_H
 #define _USART_H
 
-#include "stdio.h"
+
 #include "./SYSTEM/sys/sys.h"
+#include "stdio.h"
+
 
 
 /*******************************************************************************************************/

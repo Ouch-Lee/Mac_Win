@@ -5,7 +5,7 @@
 ..\..\output\usmart_port.o: ..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 ..\..\output\usmart_port.o: ..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h
 ..\..\output\usmart_port.o: ..\..\Drivers\CMSIS\Include\core_cm4.h
-..\..\output\usmart_port.o: D:\Program Files\embedded\core\ARM\ARMCC\Bin\..\include\stdint.h
+..\..\output\usmart_port.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\..\output\usmart_port.o: ..\..\Drivers\CMSIS\Include\cmsis_version.h
 ..\..\output\usmart_port.o: ..\..\Drivers\CMSIS\Include\cmsis_compiler.h
 ..\..\output\usmart_port.o: ..\..\Drivers\CMSIS\Include\cmsis_armcc.h
@@ -17,7 +17,7 @@
 ..\..\output\usmart_port.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h
 ..\..\output\usmart_port.o: ..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 ..\..\output\usmart_port.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h
-..\..\output\usmart_port.o: D:\Program Files\embedded\core\ARM\ARMCC\Bin\..\include\stddef.h
+..\..\output\usmart_port.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 ..\..\output\usmart_port.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h
 ..\..\output\usmart_port.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h
 ..\..\output\usmart_port.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h
@@ -70,4 +70,4 @@
 ..\..\output\usmart_port.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_hcd.h
 ..\..\output\usmart_port.o: ..\..\Drivers\CMSIS\Include\core_cm4.h
 ..\..\output\usmart_port.o: ..\..\Drivers\./SYSTEM/usart/usart.h
-..\..\output\usmart_port.o: D:\Program Files\embedded\core\ARM\ARMCC\Bin\..\include\stdio.h
+..\..\output\usmart_port.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

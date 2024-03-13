@@ -37,8 +37,8 @@ extern "C" {
 /* Exported functions ------------------------------------------------------- */
 
 
-
-
+void Error_Handler(void);
+int get_encoder_angle(uint16_t cnt, uint16_t last_cnt, int opt_cnt);
 
 
 

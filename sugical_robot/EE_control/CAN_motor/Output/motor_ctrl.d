@@ -3,7 +3,7 @@
 ..\..\output\motor_ctrl.o: ..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 ..\..\output\motor_ctrl.o: ..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h
 ..\..\output\motor_ctrl.o: ..\..\Drivers\CMSIS\Include\core_cm4.h
-..\..\output\motor_ctrl.o: D:\Program Files\embedded\core\ARM\ARMCC\Bin\..\include\stdint.h
+..\..\output\motor_ctrl.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\..\output\motor_ctrl.o: ..\..\Drivers\CMSIS\Include\cmsis_version.h
 ..\..\output\motor_ctrl.o: ..\..\Drivers\CMSIS\Include\cmsis_compiler.h
 ..\..\output\motor_ctrl.o: ..\..\Drivers\CMSIS\Include\cmsis_armcc.h
@@ -15,7 +15,7 @@
 ..\..\output\motor_ctrl.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h
 ..\..\output\motor_ctrl.o: ..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 ..\..\output\motor_ctrl.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h
-..\..\output\motor_ctrl.o: D:\Program Files\embedded\core\ARM\ARMCC\Bin\..\include\stddef.h
+..\..\output\motor_ctrl.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 ..\..\output\motor_ctrl.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h
 ..\..\output\motor_ctrl.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h
 ..\..\output\motor_ctrl.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h
@@ -70,8 +70,8 @@
 ..\..\output\motor_ctrl.o: ..\..\Drivers\./BSP/CAN/can.h
 ..\..\output\motor_ctrl.o: ..\..\Drivers\./BSP/CTRL/motor_ctrl.h
 ..\..\output\motor_ctrl.o: ..\..\Drivers\./SYSTEM/usart/usart.h
-..\..\output\motor_ctrl.o: D:\Program Files\embedded\core\ARM\ARMCC\Bin\..\include\stdio.h
+..\..\output\motor_ctrl.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\..\output\motor_ctrl.o: ..\..\Drivers\./SYSTEM/delay/delay.h
 ..\..\output\motor_ctrl.o: ..\..\Middlewares\./USMART/usmart.h
 ..\..\output\motor_ctrl.o: ..\..\Middlewares\./USMART/usmart_port.h
-..\..\output\motor_ctrl.o: D:\Program Files\embedded\core\ARM\ARMCC\Bin\..\include\stdlib.h
+..\..\output\motor_ctrl.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
