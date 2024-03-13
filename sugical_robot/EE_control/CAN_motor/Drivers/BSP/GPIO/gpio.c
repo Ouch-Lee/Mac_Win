@@ -26,9 +26,28 @@ void encoder_init(void)
 //    
 //    LED0(1);                                                /* 关闭 LED0 */
 //    LED1(1);                                                /* 关闭 LED1 */
-		GPIO_InitTypeDef GPIO_InitStruct;
-		GPIO_InitStruct.Pin = GPIO_PIN_2 | GPIO_PIN_3;
-		GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-		GPIO_InitStruct.Pull = GPIO_PULLDOWN;
-		HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+		// 初始化A相对应的PE2
+	
+	
+//    GPIO_InitTypeDef GPIO_InitStruct;
+//		ENCODER_A_GPIO_CLK_ENABLE();  
+//		GPIO_InitStruct.Pin = ENCODER_A_GPIO_PIN;
+//		GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+//		GPIO_InitStruct.Pull = GPIO_PULLUP;
+//		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+//		HAL_GPIO_Init(ENCODER_GPIO_PORT, &GPIO_InitStruct);
+//	
+//		// 初始化B相对应的PE3
+//		ENCODER_B_GPIO_CLK_ENABLE();
+//		GPIO_InitStruct.Pin = ENCODER_B_GPIO_PIN;
+//		GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+//		GPIO_InitStruct.Pull = GPIO_PULLUP;
+//		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+//		HAL_GPIO_Init(ENCODER_GPIO_PORT, &GPIO_InitStruct);
+		
+		// TEST GPIO
+		 __HAL_RCC_GPIOH_CLK_ENABLE();
+		__HAL_RCC_GPIOA_CLK_ENABLE();
+		
+		
 }

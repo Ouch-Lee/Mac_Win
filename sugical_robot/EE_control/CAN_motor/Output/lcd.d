@@ -1,11 +1,11 @@
 ..\..\output\lcd.o: ..\..\Drivers\BSP\LCD\lcd.c
-..\..\output\lcd.o: D:\Program Files\embedded\core\ARM\ARMCC\Bin\..\include\stdlib.h
+..\..\output\lcd.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\..\output\lcd.o: ..\..\Drivers\./BSP/LCD/lcd.h
 ..\..\output\lcd.o: ..\..\Drivers\./SYSTEM/sys/sys.h
 ..\..\output\lcd.o: ..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 ..\..\output\lcd.o: ..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h
 ..\..\output\lcd.o: ..\..\Drivers\CMSIS\Include\core_cm4.h
-..\..\output\lcd.o: D:\Program Files\embedded\core\ARM\ARMCC\Bin\..\include\stdint.h
+..\..\output\lcd.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\..\output\lcd.o: ..\..\Drivers\CMSIS\Include\cmsis_version.h
 ..\..\output\lcd.o: ..\..\Drivers\CMSIS\Include\cmsis_compiler.h
 ..\..\output\lcd.o: ..\..\Drivers\CMSIS\Include\cmsis_armcc.h
@@ -17,7 +17,7 @@
 ..\..\output\lcd.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h
 ..\..\output\lcd.o: ..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 ..\..\output\lcd.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h
-..\..\output\lcd.o: D:\Program Files\embedded\core\ARM\ARMCC\Bin\..\include\stddef.h
+..\..\output\lcd.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 ..\..\output\lcd.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h
 ..\..\output\lcd.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h
 ..\..\output\lcd.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h
@@ -71,6 +71,6 @@
 ..\..\output\lcd.o: ..\..\Drivers\CMSIS\Include\core_cm4.h
 ..\..\output\lcd.o: ..\..\Drivers\./BSP/LCD/lcdfont.h
 ..\..\output\lcd.o: ..\..\Drivers\./SYSTEM/usart/usart.h
-..\..\output\lcd.o: D:\Program Files\embedded\core\ARM\ARMCC\Bin\..\include\stdio.h
+..\..\output\lcd.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\..\output\lcd.o: ..\..\Drivers\./BSP/LCD/lcd_ex.c
 ..\..\output\lcd.o: ..\..\Drivers\./SYSTEM/delay/delay.h

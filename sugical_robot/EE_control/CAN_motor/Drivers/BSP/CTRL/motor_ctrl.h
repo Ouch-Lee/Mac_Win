@@ -45,7 +45,8 @@ void read_motor_position(uint8_t motor_address);
 //µç»ú¼ÓËÙ¶È
 void read_motor_Accelerate(uint8_t motor_address);
 //µç»ú×´Ì¬2
-void read_motor_State2(uint8_t motor_address, double state[3]);
+void read_motor_State2(uint8_t motor_address, double *state);
+// void read_motor_State3(uint8_t motor_address, double *state2);
 void test_param_tran(uint8_t num,uint8_t *state);
 uint8_t simu_spring_damping(uint8_t K, uint8_t C, uint8_t p, uint8_t v);
 #endif
