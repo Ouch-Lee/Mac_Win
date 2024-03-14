@@ -3,53 +3,49 @@
 <pre>
 <h1>礦ision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: μVision V5.14.0.0
-Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: ouch Administrator, 1, LIC=ATTQ1-C51MJ-NNIAF-615JW-7AGNI-9GD5I
+IDE-Version: μVision V5.29.0.0
+Copyright (C) 2019 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Lee Ouch, 南方科技大学, LIC=UJWP0-BZ7U3-RALDM-XFA9R-NK0D6-1YBQ0
  
 Tool Versions:
-Toolchain:       MDK-ARM Standard  Version: 5.14.0.0
-Toolchain Path:  D:\Keil_v5\ARM\ARMCC\Bin
-C Compiler:      Armcc.exe V5.05 update 1 (build 106)
-Assembler:       Armasm.exe V5.05 update 1 (build 106)
-Linker/Locator:  ArmLink.exe V5.05 update 1 (build 106)
-Library Manager: ArmAr.exe V5.05 update 1 (build 106)
-Hex Converter:   FromElf.exe V5.05 update 1 (build 106)
-CPU DLL:         SARMCM3.DLL V5.14.0.0
-Dialog DLL:      DCM.DLL V1.13.1.0
-Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V2.0.14.0_KEIL
-Dialog DLL:      TCM.DLL V1.14.4.0
+Toolchain:       MDK-ARM Plus  Version: 5.29.0.0
+Toolchain Path:  D:\Program Files\embedded\core\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.13.1
+Assembler:       Armasm.exe V6.13.1
+Linker/Locator:  ArmLink.exe V6.13.1
+Library Manager: ArmAr.exe V6.13.1
+Hex Converter:   FromElf.exe V6.13.1
+CPU DLL:         SARMCM3.DLL V5.29.0.0
+Dialog DLL:      DCM.DLL V1.17.3.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.7.0
+Dialog DLL:      TCM.DLL V1.36.5.0
  
 <h2>Project:</h2>
-E:\GitHub\Mac_win\Mac_Win\sugical_robot\EE_control\CAN_motor\Projects\MDK-ARM\atk_f407.uvprojx
-Project File Date:  03/11/2024
+D:\桌面\Win_mac\Mac_Win\sugical_robot\EE_control\CAN_motor\Projects\MDK-ARM\atk_f407.uvprojx
+Project File Date:  03/13/2024
 
 <h2>Output:</h2>
+*** Using Compiler 'V6.13.1', folder: 'D:\Program Files\embedded\core\ARM\ARMCLANG\Bin'
 Build target 'CAN'
 compiling main.c...
-..\..\Drivers\./BSP/CAN/can.h(69): warning:  #1295-D: Deprecated declaration CAN_Filter_Config - give arg types
-  void CAN_Filter_Config();
-..\..\Drivers\./BSP/CAN/can.h(77): warning:  #1295-D: Deprecated declaration CAN1_RX0_IRQHandler - give arg types
-  void CAN1_RX0_IRQHandler();
-..\..\User\main.c(82): warning:  #177-D: variable "cnt" was declared but never referenced
-                uint16_t cnt = 0;
-..\..\User\main.c(87): warning:  #177-D: variable "buffer" was declared but never referenced
-                char buffer[20];
-..\..\User\main.c(43): warning:  #177-D: variable "speedControl" was declared but never referenced
-  static uint32_t speedControl = 150;
-..\..\User\main.c(44): warning:  #177-D: variable "txMailBox" was declared but never referenced
-  static uint32_t txMailBox;
-..\..\User\main.c: 6 warnings, 0 errors
 linking...
-Program Size: Code=25350 RO-data=13938 RW-data=476 ZI-data=1772  
+Program Size: Code=21610 RO-data=14830 RW-data=420 ZI-data=1892  
 FromELF: creating hex file...
-"..\..\Output\atk_f407.axf" - 0 Error(s), 6 Warning(s).
+"..\..\Output\atk_f407.axf" - 0 Error(s), 0 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.STM32F4xx_DFP.2.15.0.pack
+                Keil.STM32F4xx_DFP.2.15.0
+                STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
 
 <h2>Collection of Component include folders:</h2>
-  E:\GitHub\Mac_win\Mac_Win\sugical_robot\EE_control\CAN_motor\Projects\MDK-ARM\RTE
-  D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0
+  .\RTE\_CAN
+  D:\Program Files\embedded\pack\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
 
 <h2>Collection of Component Files used:</h2>
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

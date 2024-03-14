@@ -59,7 +59,7 @@ static double motor_pitch_para[3]  = {0.0, 0.0, 0.0};
 
 
 //void processEncoder();
-void updateEncoderAngle(uint16_t *last_cnt, int *opt_cnt, int *encoder_angle);
+void updateEncoderAngle(uint16_t *last_cnt, int *opt_cnt, double *encoder_angle);
 
 int main(void)
 {
@@ -82,10 +82,8 @@ int main(void)
 		uint16_t cnt = 0;
     uint16_t last_cnt = 0;
     int opt_cnt = 0;
-    int encoder_angle = 0;
-	
-		char buffer[20];
-    printf("\r\n start test \r\n");
+		double encoder_angle = 0.00;
+//    printf("\r\n start test \r\n");
 		delay_ms(1000);
 		
 		while (1)
@@ -97,7 +95,7 @@ int main(void)
 			
 //			encoder_angle_KF = KalmanFilter_update(&KF_1, encoder_angle);
 				updateEncoderAngle(&last_cnt, &opt_cnt, &encoder_angle);
-				printf("\r\n %d ", encoder_angle);
+				printf("\r\n%.2f %.2f ", encoder_angle, 0.00);
 //			printf("\r\n init angle is %d and KF is %f \r\n", encoder_angle, encoder_angle_KF);
 //			
 
@@ -106,9 +104,12 @@ int main(void)
 				read_motor_State2(motorId_yaw, motor_yaw_para); 
 //			printf("\r\n the angle for motor %d is: %f, \r\n",motorId_yaw, motor_yaw_para[2]);
 //				
-//				HAL_Delay(50);
-				motor_torque_control(motorId_pitch, 10); // drive motor
+
+				motor_torque_control(motorId_pitch, -5); // drive motor
  				read_motor_State2(motorId_pitch, motor_pitch_para); 
+				printf("%.2f", 0.00);
+			
+				HAL_Delay(2);
 //				printf("\r\n %f", motor_yaw_para[2]);
 //				sprintf(buffer, "%.6f",motor_yaw_para[2]);
 //				uint16_t size = strlen(buffer);
@@ -136,7 +137,7 @@ int main(void)
     }
 }
 
-void updateEncoderAngle(uint16_t *last_cnt, int *opt_cnt, int *encoder_angle) {
+void updateEncoderAngle(uint16_t *last_cnt, int *opt_cnt, double *encoder_angle) {
     uint16_t cnt = __HAL_TIM_GET_COUNTER(&htim5);
     int diff_cnt = cnt - *last_cnt;
     if (abs(diff_cnt) > 10) {
@@ -144,7 +145,7 @@ void updateEncoderAngle(uint16_t *last_cnt, int *opt_cnt, int *encoder_angle) {
     }
 
     *opt_cnt += diff_cnt;
-    *encoder_angle = *opt_cnt * 360 / 1024;
+    *encoder_angle = (double) *opt_cnt * 360 / 1024;
     *last_cnt = cnt;
 }
 

@@ -176,7 +176,7 @@ void read_motor_State2(uint8_t motor_address, double *state)
 						state[2] = (double) position / 65535.0 * 360.0;
 //									printf("State array for motor %d in motor_ctrl: [tau: %f, v: %f, P; %f]\n", motor_address,
 //           state[0], state[1], state[2]);
-						printf("%f ", state[2]);
+						printf("%.2f ", state[2]);
 				}
 			
  }

@@ -16,3 +16,17 @@
 
 在运行该文件前，需要先运行“extended_two_links”+“check_paper_DH”
 
+
+
+
+
+
+
+### STM32串口数据处理
+
+* 传输的数据太多了，所以先进行了简单的采样处理 sampling_array 函数
+* get_end_position 传入采样后的数据
+  * 需要处理一下角度
+  * get_one_P中计算全是整数的问题，将sym计算得到的数换到另外一个T_matix里面就行
+  * 
+
