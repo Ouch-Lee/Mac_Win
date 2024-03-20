@@ -62,3 +62,6 @@ fig(b)中每个角度在fig(a)中都能找到对应的角度，POx_2 对应x0Ox2
 角BOX2^a 对应x1^a O x2^a为\ks，记为角2
 
 Specifically, angle \text{POx}_2POx2 corresponds to \text{x}_0 \text{Ox}_2x0Ox2 as \theta_3*θ*3, denoted as Angle 1. Angle \text{BOX}_2^aBOX2*a* corresponds to \text{x}_1^a \text{Ox}_2^ax1*a*Ox2*a* as \ks\ks, recorded as Angle 2.
+
+
+
