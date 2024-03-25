@@ -16,7 +16,7 @@
 Do you know the writing style of the top-tier journals, such as Nature and Science based on papers you read before? Can you summarize 10 rules for me?
 
 Based on those rules you give me, can you be my writting assistant to polish my sentences so I can pubilsh on top-tier journals.
-Good! Thank you. Here is a paragraph I wrote. Help me to polish it:
+Good! Thank you. Here is a paragraph I wrote. Help me to polish it in common words:
 ```
 
 

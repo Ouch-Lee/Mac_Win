@@ -1,8 +1,8 @@
 
 % 数据准备
-data_x_1 = averageArray(:,1);
-data_y_1 = averageArray(:,2);
-data_z_1 = averageArray(:,3);
+data_x_1 = P_avg(:,1);
+data_y_1 = P_avg(:,2);
+data_z_1 = P_avg(:,3);
 
 data_x_2 = P_avg_KF(:,1);
 data_y_2 = P_avg_KF(:,2);
@@ -53,4 +53,4 @@ legend('initial\_data', 'after\_KF');
 grid on;
 
 % 调整子图间距
-sgtitle('Tremor Tracking Comparison', 'FontSize', 16);
+sgtitle('Tremor Tracking Comparison(KF)', 'FontSize', 16);
