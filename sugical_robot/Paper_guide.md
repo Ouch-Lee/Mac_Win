@@ -40,11 +40,18 @@
 
   
 
-  
+
+### surgical robot console
+
+* [sigma7](https://ieeexplore.ieee.org/abstract/document/6094433)
+
+
+
+
 
 ## tremor
 
-
+* [上古介绍肌肉疲劳震颤的文章](https://www.sciencedirect.com/science/article/pii/S0363502379801276)
 
 
 
