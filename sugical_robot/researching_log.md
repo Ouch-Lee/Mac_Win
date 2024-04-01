@@ -289,7 +289,11 @@ ok，差不多！
 
 
 
-### 手部grip
+### hand grip
+
+设计目标：即使传统的内窥镜把手上也有很多功能键按钮，为了实现手术机器人操控的高效性，需要至少在hand grip部分实现传统内窥镜的所有功能，通过左右手配合，实现1个人完成需要多人配合的任务
+
+
 
 
 
@@ -331,6 +335,32 @@ $$
 #### pincher部分设计
 
 首先要明确一个事情，我需要准确的摁压角度，还是只需要检测是否被摁压；为了
+
+
+
+#### 无名指旋钮
+
+这部分首先要完成的任务是，选择合适的电器元件，实现旋转的切换：
+
+关于具体要实现哪些功能？
+
+* **Suction**: remove fluids, debris, or tissue fragments to maintain a clear view.
+* **Irrigation**: deliver fluids to cleanse the surgical area, remove blood, and improve visibility.
+* **Drug Delivery**: deliver medications directly to specific areas within the body.
+* **AIR insuffulator**: 
+* **camera**
+
+![image-20240401130747897](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20240401130747897.png)
+
+目前能够选择的电子器件包括：电位器、旋转按钮、微型编码器
+
+| -          | 优点                             | 缺点                                                   | 尺寸(d x h)         |
+| ---------- | -------------------------------- | ------------------------------------------------------ | ------------------- |
+| 电位器     | 价格便宜，能通过程序灵活设置挡位 | 需要额外设计程序，将阻值设置为挡位                     | 22 x 18 + 6x22      |
+| 旋转按钮   | 挡位分明                         | 需要较大的力气拨动旋钮，不够顺滑，且挡位越多电路越复杂 | 29 x 12 + 10 x 13.5 |
+| 微型编码器 | 非常顺滑，精度高                 | 贵，有点大材小用                                       | 15x17               |
+
+
 
 
 

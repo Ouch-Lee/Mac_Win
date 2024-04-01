@@ -82,7 +82,11 @@ These terms are succinct and are commonly used in descriptions of mechanical mov
 
 ## 手部震颤抑制
 
-震颤过滤是所有遥操纵的手术机器人需要共同面对的问题，在设备性能优良的情况下，操纵者手部的震颤成为了震颤的主要来源。生理性震颤（Physiologic Tremor）是一种生理性现象，是正常情况下每个人都会经历的微弱的震颤或颤动[3-0]。这种震颤的频率在8-12Hz之间，通常肉眼通常无法感知，但在手术的条件下，生理性震颤是不可忽视的不利因素，The trend towards the use of ‘minimally invasive surgery’ also tends to amplify tremor effects, due to the longer lever-arm action of typical laparoscopic instruments[3-1].
+震颤过滤是所有遥操纵的手术机器人需要共同面对的问题，在设备性能优良的情况下，操纵者手部的震颤成为了震颤的主要来源。这种震颤被称为生理性震颤（Physiologic Tremor），一种生理性现象，正常情况下每个人都会经历的微弱的震颤或颤动。这种震颤的频率在8-12Hz之间，通常肉眼通常无法感知，但在手术的条件下，生理性震颤是不可忽视的不利因素，The trend towards the use of ‘minimally invasive surgery’ also tends to amplify tremor effects, due to the longer lever-arm action of typical laparoscopic instruments[3-1].
+
+Tremor mitigation is a critical challenge in teleoperated surgical robotics. When the equipment performance is excellent, the tremor of the operator's hand becomes the main source of tremor. This tremor, known as Physiologic Tremor, is a physiological phenomenon that everyone normally experiences as a weak tremor or flutter. The frequency of this tremor is between 8-12Hz and is usually invisible to the naked eye. However, under surgical conditions, physiological tremor is a disadvantage that cannot be ignored. The tremor effects are amplified, due to the longer lever-arm action of typical laparoscopic instruments.
+
+
 
 为了对surgeon的手部Physiologic Tremor进行evaluation，首先需要记录震颤活动，通常 accelerometry, electromyography (EMG), and other signals (such as force or gyroscopic measurements) are acquired, digitized through an analog-to-digital board and analyzed. 这种方法的问题是设备测量精度不够高，不能直接反应手部震颤的效果。在这里我们让surgeon手握"finger gripper"，通过记录各个关节的位置信息，结合master console的正向运动学，计算末端在空间中位置的变化，从而记录手部的震颤。
 

@@ -47,6 +47,14 @@
 
 
 
+### hand griper
+
+[Olympus_design](https://www.olympus-global.com/technology/design/story/surgicalenergydevice/?page=technology_design) : 通过这篇官网链接，可以学习到世界顶级的手术器械的设计，从中获取灵感；比如如何强调直觉性、一些细节、如何改进
+
+[endoscope_structure_introduction](https://www.youtube.com/watch?v=kHONXxQK3iE&t=504s): 油管一个十分详细介绍内窥镜各个结构的视频
+
+[How endoscope work](https://clinicalgate.com/how-endoscopes-work/)
+
 
 
 ## tremor
