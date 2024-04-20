@@ -55,6 +55,8 @@
 
 [How endoscope work](https://clinicalgate.com/how-endoscopes-work/)
 
+跟多文章见文件夹[manipulator design/readme]
+
 
 
 ## tremor
