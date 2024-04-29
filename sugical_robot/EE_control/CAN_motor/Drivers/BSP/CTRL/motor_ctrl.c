@@ -11,7 +11,7 @@
 //#include "./BSP/ATK_MS901M/atk_ms901m.h"
 # include <stdio.h>
 # include <stdlib.h>
-
+# include "./BSP/CAN/can.h"
 
 
 
@@ -42,7 +42,7 @@ void motor_torque_control(uint8_t motor_address, double iqValue)
 		msg_v[6] = 0x00;
 		msg_v[7] = 0x00;
 		
-    can_send_msg(motor_address,msg_v,8);
+    can_send_msg(motor_address + DEVICE_STD_ID, msg_v,8);
 }
 
 
@@ -182,46 +182,6 @@ void read_motor_State2(uint8_t motor_address, double *state)
  }
 
  
-// void read_motor_State3(uint8_t motor_address, double *state2)
-//{
-///**********************************************************
-//		DATA[0] ÃüÁî×Ö½Ú 0x9C 
-//		DATA[1] = *(uint8_t *)(&temperature) 
-//		DATA[2] = *(uint8_t *)(&iq) 
-//		DATA[3] = *((uint8_t *)(&iq)+1)  
-//		DATA[4] = *(uint8_t *)(&speed) 
-//		DATA[5] = *((uint8_t *)(&speed)+1)
-//		DATA[6] = *(uint8_t *)(&encoder) 
-//		DATA[7] = *((uint8_t *)(&encoder)+1) 
-//**********************************************************/	
-//		uint8_t msg_v[8]; 
-//    uint8_t rxlen = can_receive_msg(motor_address + DEVICE_STD_ID, msg_v);
-//        if (rxlen)
-//        {
-////						printf("\r\n already receive the msg \r\n");
-
-//						int16_t tau = (int16_t)(msg_v[2] | (msg_v[3] << 8)); //iq
-//						int16_t speed  = (int16_t)(msg_v[4] | (msg_v[5] << 8)); // speed
-//						uint16_t position = (uint16_t)(msg_v[6] | (msg_v[7] << 8));  //encoder = position
-//						state2[0] = (double) tau *16.5 / 2048;
-//						state2[1] =  (double) speed * 360 / (1 << 16);
-//						state2[2] = (double) position / 65535.0 * 360.0;
-////									printf("State array for motor %d in motor_ctrl: [tau: %f, v: %f, P; %f]\n", motor_address,
-////           state[0], state[1], state[2]);
-//						printf("angle for motor %d is %f]\n", motor_address, state2[2]);
-//				}
-// }
-//				
-//            for (int i = 0; i < rxlen; i++)
-//            {
-//								usart_show_xnum(msg_v[i], rxlen);
-//            }
-					
-//					printf("\r\n msg[0]: %x\n ,msg[1]: %x\n ,msg[2]: %x\n ,msg[3]: %x\n ,msg[4]: %x\n ,msg[5]: %x\n ,msg[6]: %x\n ,msg[7]: %x\n",
-//						msg_v[0],msg_v[1],msg_v[2],msg_v[3],msg_v[4],msg_v[5],msg_v[6],msg_v[7]);
-				
-//		state[0]  = msg_v[1];  // temperature
-
 void test_param_tran(uint8_t num, uint8_t *state)
 {
 	for(int i=0; i<4; i++)

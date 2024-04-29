@@ -12,9 +12,29 @@
 
 6- 一篇解剖学相关的文章，论述了手部的两种姿态
 
+7- 一篇关于pincher grip的专利
 
+8-一篇介绍仅紧凑master manipulator设计的论文
 
+9-[哈工大一遍优化主端手术机器人的文章](https://ieeexplore.ieee.org/abstract/document/8848374)
 
+10-[稍后再看](https://link.springer.com/article/10.1186/s12938-018-0601-6?fromPaywallRec=false)
+
+11-[一篇把gripper讲明白了的IROS](https://ieeexplore.ieee.org/document/8202159)
+
+12-[还有专门研究gripper的？](https://www.researchgate.net/publication/271547893_Effect_of_load_force_feedback_on_grip_force_control_during_teleoperation_A_preliminary_study)
+
+13-[很捞但至少它是真的做gripper的](https://ieeexplore.ieee.org/abstract/document/7177760)
+
+14-[一篇和我做的很像的all-joint-control的master device](https://link.springer.com/article/10.1007/s11548-016-1352-0)
+
+15-[一种圆柱体gripper？](https://ieeexplore.ieee.org/abstract/document/7759149)
+
+16-[4DOF抓手力反馈研究](https://ieeexplore.ieee.org/abstract/document/4145189)
+
+17-[MIS抓手力反馈实现](https://ieeexplore.ieee.org/document/10058553)
+
+18-[自己做一台达芬奇](https://ieeexplore.ieee.org/abstract/document/6907809)
 
 
 
@@ -36,9 +56,86 @@
 
 
 
-## 论文修改记录
 
-introduction-1：gpt3.5改的第一版中文
 
-introduction-2: 3.5改的第一版英文
+## Hamlyn CRM: a compact master manipulator for surgical robot remote control
 
+introduce：该部分先介绍了主流手术机器人主要由三部分组成：a master control console with interactive manipulators, a slave surgical robot with articulated instruments and a feedback system with vision and other sensing modalities.；之后介绍了主从结构的特点，但是不够紧凑，所以这篇文章用了传感器融合技术；同时重点介绍了他们手术机器人模型的映射策略
+
+* 机械结构
+
+  通过matlab的运动简图可以看出大致原理，三个正交轴实现手朝向的变化，一个线性轴+万向节实现空间位置改变
+
+* 运动学
+
+  运动学较为简单
+
+* 传感器融合
+
+  * 两个imu+两个霍尔传感器
+  * 如何进行处理传感器数据
+
+* 末端添加光标，结合NDI光学跟踪系统验证末端精度
+
+* 主从映射策略
+
+  * 主从系统那个图做的很好，很具有借鉴价值
+  * 所有传感器信息使用到了ROS发布
+  * 介绍了 主-视觉坐标系-从坐标系之间的变化（由于还没有研究视觉坐标系，这里先跳过）
+  * 映射模式：位置模式采用P模式，姿态采用绝对（直觉映射）和增量控制两种模式，两者各有优势
+  * 
+
+  
+
+## 11-Master manipulator designed for highly articulated robotic instruments in single access surgery
+
+**introduce**：因为主从机器人的性能很大程度取决于master device 的性能，这个设计是为了解决工作空间不匹配，以及缺乏重要关节被限制的信息（可能他就是想说明同构关节的好处，能够让操纵者知道哪个关节受到了限制）；关节处设计一个力传感器主意挺不错，可以通过力的方向判断运动方向，结合电机辅助操纵者运动
+
+introduce: 先介绍了手术机器人主从系统的被广泛应用的原因；后面介绍为什么要注重主端的设计：
+
+An advanced slave system composed of highly dexterous instruments will ultimately not perform to its full potential if paired with an inadequate master system.
+
+然后提出目前主流的手术机器人都是基于task space去设计，这样的缺点是 mismatch ，以及一些缺点
+
+所以,the use of a dvice-specific master manipulator commanding the slave robot is **joint space** can be an attactive alternative。
+
+后面介绍了几种joint-control的主端设备，但是缺点竟然是关节都是被动的？
+
+**manipulator design:**
+
+具体介绍了机械结构
+
+**Workspace Analysis：**
+
+绘制了主从工作空间的灵活程度（我是不是应该也分析一下？
+
+Control system：
+
+* 为了提示操纵者每个关节快到边界了，添加一些阻力
+* 自身重力补偿
+* 摩擦力补偿，这个等到自己要做的时候再仔细的看
+
+
+
+## 12-研究gripper握力的文章
+
+这篇会议论文刚好就是我现在在做的东西，可以带着critical thinking的眼观来审视这篇论文
+
+文章主要想解决的问题是目前手术机器人的抓取严重依赖视觉反馈，力太大夹伤了，力太小又容易脱落。所以这篇文章就是研究如何控制握力
+
+之前的工作是证明人手在抓取时手指的窝里和手上的载荷相关；视觉仅能进行预估，不如触觉准确；还有一些别人做的实验，说明平移的反馈了不如抓取的反馈力，这不是废话吗
+
+
+
+## 16
+
+1. **研究目的**：文章旨在确定在执行远程操作任务时，握力反馈与笛卡尔（平移）力反馈对操作者的影响。
+2. **系统开发**：研究者开发了一个系统，为3自由度（DOF）的Phantom触觉设备主机增加了额外的握力反馈DOF，并且在Phantom触觉设备从机的每个“手指”上增加了6-DOF力/扭矩传感。
+3. **实验设计**：用户在执行一个软性插孔任务时，会接触到不同的力反馈条件：(1) 全力反馈，(2) 仅平移力反馈，(3) 仅握力反馈，以及 (4) 无力反馈。实验结果显示，在增加握力反馈的3-DOF远程操作器中，平移和握力的施加水平是解耦的，这可能是由于内部和外部手部力的动力学是解耦的。
+4. **远程操作器的挑战**：当前的远程操作器，包括手术远程操作器，并不向用户提供完整的力反馈。力传感器的尺寸、消毒和生物相容性限制了在手术环境中使用从机器上完整的力感应的可行性。
+5. **实验方法**：五名右手受试者使用4-DOF远程操作器执行简单的操作任务，即抓取一个矩形泡沫“插孔”并将其插入泡沫块中的矩形孔中。实验中提供了四种不同的力反馈条件，每种条件都由受试者随机顺序重复五次。
+6. **实验结果**：方差分析（ANOVA）表明，力反馈显著影响平均施加的平移力和平均施加的握力（p < 0.0001），但对完成任务的时间没有显著影响（p = 0.144）。实验不支持假设1和假设2，即平移力反馈不会显著影响施加的握力，反之亦然。
+7. **结论**：文章提出了一个使用两个Phantom触觉设备的4-DOF远程操作器，该设备具有可附加的夹持机构，能够提供4个DOF的力反馈。研究表明，在没有提供力反馈的DOFs中，平移力反馈和握力反馈在调节力的能力上是解耦的。在需要最小化Cartesian力反馈和握力反馈的情况下，显然需要全反馈。
+8. **未来工作**：未来的研究将包括对能量观测器和环境建模的研究，以减少部分力反馈对用户的负面影响，并确保具有传感器/执行器不对称性的远程操作器的稳定性。
+
+文章的研究对于理解和改进远程操作器，特别是在手术远程操作领域的力反馈设计具有重要意义。

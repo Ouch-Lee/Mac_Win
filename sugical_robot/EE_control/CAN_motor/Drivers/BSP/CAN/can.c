@@ -23,9 +23,8 @@
  */
 
 #include "./BSP/CAN/can.h"
-#include "./BSP/LED/led.h"
-#include "./SYSTEM/delay/delay.h"
 #include "./SYSTEM/usart/usart.h"
+#include "main.h"
 
 /* USER CODE BEGIN 0 */
 uint8_t canTxData[8];
@@ -188,14 +187,11 @@ void CAN_Config(void)
 {
 	  MX_CAN1_Init();
 
-//	__HAL_CAN_ENABLE_IT(&g_canx_handler, CAN_IT_RX_FIFO0_MSG_PENDING); /* FIFO0消息挂号中断允许 */
-//	HAL_NVIC_SetPriority(CAN1_RX0_IRQn, 0, 0);
-//	HAL_NVIC_EnableIRQ(CAN1_RX0_IRQn);
+	__HAL_CAN_ENABLE_IT(&g_canx_handler, CAN_IT_RX_FIFO0_MSG_PENDING); /* FIFO0消息挂号中断允许 */
+	HAL_NVIC_SetPriority(CAN1_RX0_IRQn, 0, 0); // USB_LP_CAN1_RX0_IRQn
+	HAL_NVIC_EnableIRQ(CAN1_RX0_IRQn);
 	
   CAN_Filter_Config();
-//	__HAL_CAN_ENABLE_IT(&g_canx_handler, CAN_IT_RX_FIFO0_MSG_PENDING); /* FIFO0消息挂号中断允许 */
-//	HAL_NVIC_SetPriority(CAN1_RX0_IRQn, 0, 0);
-//	HAL_NVIC_EnableIRQ(CAN1_RX0_IRQn);
 //	
 	/*##-3- Start the CAN peripheral ###########################################*/
 	if(HAL_CAN_Start(&g_canx_handler)!=HAL_OK)//！！！一定要打开can外设，不打开can收发就处于关闭状态
@@ -222,73 +218,103 @@ void CAN_Config(void)
  * @param       无
  * @retval      无
  */
-void USB_LP_CAN1_RX0_IRQHandler(void)
-{
-    uint8_t rxbuf[8];
-    uint32_t id;
-    can_receive_msg(id, rxbuf);
-    printf("id:%d\r\n", g_canx_rxheader.StdId);
-    printf("ide:%d\r\n", g_canx_rxheader.IDE);
-    printf("rtr:%d\r\n", g_canx_rxheader.RTR);
-    printf("len:%d\r\n", g_canx_rxheader.DLC);
+//void USB_LP_CAN1_RX0_IRQHandler(void)
+//{
+//    uint8_t rxbuf[8];
+//    uint32_t id;
+//    can_receive_msg(id, rxbuf);
+//    printf("id:%d\r\n", g_canx_rxheader.StdId);
+//    printf("ide:%d\r\n", g_canx_rxheader.IDE);
+//    printf("rtr:%d\r\n", g_canx_rxheader.RTR);
+//    printf("len:%d\r\n", g_canx_rxheader.DLC);
 
-    printf("rxbuf[0]:%d\r\n", rxbuf[0]);
-    printf("rxbuf[1]:%d\r\n", rxbuf[1]);
-    printf("rxbuf[2]:%d\r\n", rxbuf[2]);
-    printf("rxbuf[3]:%d\r\n", rxbuf[3]);
-    printf("rxbuf[4]:%d\r\n", rxbuf[4]);
-    printf("rxbuf[5]:%d\r\n", rxbuf[5]);
-    printf("rxbuf[6]:%d\r\n", rxbuf[6]);
-    printf("rxbuf[7]:%d\r\n", rxbuf[7]);
-}
+//    printf("rxbuf[0]:%d\r\n", rxbuf[0]);
+//    printf("rxbuf[1]:%d\r\n", rxbuf[1]);
+//    printf("rxbuf[2]:%d\r\n", rxbuf[2]);
+//    printf("rxbuf[3]:%d\r\n", rxbuf[3]);
+//    printf("rxbuf[4]:%d\r\n", rxbuf[4]);
+//    printf("rxbuf[5]:%d\r\n", rxbuf[5]);
+//    printf("rxbuf[6]:%d\r\n", rxbuf[6]);
+//    printf("rxbuf[7]:%d\r\n", rxbuf[7]);
+//}
+//void CAN1_RX0_IRQHandler(){
+
+//}
+
 
 #endif
 
 void CAN1_RX0_IRQHandler()
 {
-	uint8_t rxbuf[8];
+	uint8_t msg_v[8];
   uint32_t id;
-	uint16_t TH = 65535; //反转阈值用来将获取到的参数修正为负数
-  uint16_t iq;		//力矩电流
-  uint16_t speed; //速度
-	int32_t Speed;
-	
+
   uint8_t ide, rtr, len;
 	
 //  
 	
-  can_receive_msg(id, rxbuf);
-  
-	
-	if(rxbuf[0] == 0x9C){
-		iq =(uint16_t)(((uint8_t)rxbuf[3]<<8)
-									|((uint8_t)rxbuf[2]<<0));
-		if(iq > 60000) {
-			IQ = -(TH-iq);
-			printf("{motorTnfo}%d",IQ);
-			printf(",");
-		}else{
-			IQ = iq;
-			printf("{motorTnfo}%d",iq);
-			printf(",");
-		}
+      // 读取FIFO 0中的消息
+  if (HAL_CAN_GetRxMessage(&g_canx_handler, CAN_RX_FIFO0, &g_canx_rxheader, msg_v) == HAL_OK) {
+        // 存储ID和长度到局部变量
+        id = g_canx_rxheader.StdId;
+        len = g_canx_rxheader.DLC;
 
-	//	printf("%d",iq);
-	//	printf(",");
-		
-		speed =(uint16_t)(((uint8_t)rxbuf[5]<<8)
-										 |((uint8_t)rxbuf[4]<<0));
-		if(speed > 60000) {
-			Speed = -(TH-speed);
-			printf("%d",Speed);
-			printf("\n");
-		}else{
-			printf("%d",speed);
-			printf("\n");
-		}
+        // 调用消息处理函数，传递局部变量
+        ProcessMotorCANMessage(id, msg_v, len);
+
+        // 清除中断标志
+        __HAL_CAN_CLEAR_FLAG(&g_canx_handler, CAN_IT_RX_FIFO0_MSG_PENDING);
 	}
 }
 
+
+
+
+void ProcessMotorCANMessage(uint32_t id, uint8_t *rxbuf, uint8_t len) {
+    // 检查数据长度是否为8字节
+    if (len != 8) {
+        printf("Received message with incorrect length: %d bytes, ID: 0x%03X\n", len, id);
+        return;
+    }
+
+    // 打印接收到的8字节数据
+    printf("Received 8 bytes for ID 0x%03X: ", id);
+    for (int i = 0; i < len; ++i) {
+        printf("%02X ", rxbuf[i]);
+    }
+    printf("\n");
+
+    // 电机数据解码
+    if (rxbuf[0] == 0xA1) {
+        int16_t tau = (int16_t)(rxbuf[2] | (rxbuf[3] << 8));
+        int16_t speed = (int16_t)(rxbuf[4] | (rxbuf[5] << 8));
+        uint16_t position = (uint16_t)(rxbuf[6] | (rxbuf[7] << 8));
+
+        // 根据接收到的ID更新电机角度值
+        if (id > DEVICE_STD_ID && id <= (DEVICE_STD_ID + 5)) {
+            // 更新received_data数组中的角度值
+						switch (id) {
+								case 0x141: {
+										received_data[id - DEVICE_STD_ID - 1] = (double)position / 65535.0 * 360.0 - 185;
+										break;
+								}
+								case 0x142: {
+										received_data[id - DEVICE_STD_ID - 1] = (double)position / 65535.0 * 360.0 - 322;
+										break;
+								}
+								// 可以根据需要添加更多的case语句
+								default:
+										// 可以在这里处理未匹配到ID的情况
+										break;
+		}
+            
+        } else {
+            printf("Received message with unexpected ID: 0x%03X\n", id);
+        }
+    } else {
+        printf("Received message with wrong header byte: 0x%02X\n", rxbuf[0]);
+    }
+}
 
 /**
  * @brief       CAN 发送一组数据
@@ -299,7 +325,7 @@ void CAN1_RX0_IRQHandler()
 uint8_t can_send_msg(uint32_t id, uint8_t *msg, uint8_t len)
 {
     uint32_t TxMailbox = CAN_TX_MAILBOX0;
-    g_canx_txheader.StdId = DEVICE_STD_ID + id;         /* 标准标识符 */ //
+    g_canx_txheader.StdId = id;         /* 标准标识符 */ //
     g_canx_txheader.ExtId = 0x00;         /* 扩展标识符(29位) */
     g_canx_txheader.IDE = CAN_ID_STD;   /* 使用标准帧 */
     g_canx_txheader.RTR = CAN_RTR_DATA; /* 数据帧 */

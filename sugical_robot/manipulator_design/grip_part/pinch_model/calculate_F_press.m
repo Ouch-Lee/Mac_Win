@@ -1,20 +1,27 @@
 % 用于计算给定角度时操纵者需要提供多大的 合力矩
-mu = 0.5;   % mu 常数值
+
 Fpress = 10; % Fpress 常数值
 L1 = 13.8;
 L2 = 18.5;
-k = 50;      % k 常数值
+k = 64;      % k 常数值
 l0 = sqrt(L1^2 + L2^2);     % l0 常数值
 theta_i = 120 - rad2deg(atan2(L2,L1));
 
 
 % 定义 theta 范围
 theta_range = theta_i - 30 :0.1: theta_i;
+% theta_range = theta_range(1,1:length(theta_range)-1);
 n = length(theta_range);
-% theta_range_1 = theta_range(1:)
+% theta_range_1 = theta_range(1, 1:n/2);
+% theta_range_2 = theta_range(1, n/2+1 :n);
 F1_values = zeros(1,n);
 % 计算对应 theta 值下的 F1
-for i = 1:length(theta_range)
+for i = 1:n
+    if i < n/2
+        mu = 20;
+    else
+        mu  = 0;   % mu 常数值
+    end
     F1_values(i) = calculate_F1(theta_i, theta_range(i), k, l0, mu, Fpress);
 end
 

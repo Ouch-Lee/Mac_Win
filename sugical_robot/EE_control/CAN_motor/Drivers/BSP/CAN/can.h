@@ -46,7 +46,8 @@ typedef struct {
 #define CAN_TX_GPIO_PIN                 GPIO_PIN_12
 #define CAN_TX_GPIO_CLK_ENABLE()        do{ __HAL_RCC_GPIOA_CLK_ENABLE(); }while(0)     /* PA口时钟使能 */
 
-#define DEVICE_STD_ID						(0x140)
+#define DEVICE_STD_ID						(0x140)  // motor base id
+#define MASTER_SLAVE_ID          0x131   // sending CAN msg to slave
 #define DEVICE_STD_BOARDCAST_ID	(0x280)
 typedef  CAN_TxHeaderTypeDef CANTxMsg;
 typedef  CAN_RxHeaderTypeDef CANRxMsg;
@@ -62,7 +63,7 @@ extern uint16_t encoderValue;
 
 
 /* CAN接收RX0中断使能 */
-#define CAN_RX0_INT_ENABLE              0                                              /* 0,不使能; 1,使能; */
+#define CAN_RX0_INT_ENABLE              1                                              /* 0,不使能; 1,使能; */
 
 /* 对外接口函数 */
 void HAL_CAN_MspInit(CAN_HandleTypeDef* canHandle);
@@ -75,6 +76,7 @@ void HAL_CAN_MspInit(CAN_HandleTypeDef *hcan);
 void Error_Handler(void);
 void CAN_Config(void);
 void CAN1_RX0_IRQHandler();
+void ProcessMotorCANMessage(uint32_t id, uint8_t *rxbuf, uint8_t len);
 #endif
 
 

@@ -10,7 +10,6 @@
       <TargetName>CAN</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pArmCC>6130001::V6.13.1::.\ARMCLANG</pArmCC>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32F407ZGTx</Device>
@@ -434,11 +433,6 @@
               <FileType>1</FileType>
               <FilePath>..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c</FilePath>
             </File>
-            <File>
-              <FileName>main.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\main.h</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -598,11 +592,6 @@
               <FileName>kf.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\Drivers\BSP\KF\kf.c</FilePath>
-            </File>
-            <File>
-              <FileName>adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\Drivers\BSP\ADC\adc.c</FilePath>
             </File>
           </Files>
         </Group>
