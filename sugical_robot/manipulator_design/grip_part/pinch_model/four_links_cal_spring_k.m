@@ -14,7 +14,7 @@ l2 = 33;
 
 theta_i = 120 - rad2deg(atan2(L2,L1));
 theta_f = theta_i - 30;
-F_max = 450 * (l1 + l2); %tau: g*mm
+F_max = 250 * (l1 + l2); %tau: g*mm
 F_spring_max = F_max / (2 * l0 * sind(theta_f));
 delta_x = 2*l0*cosd(theta_f) - l_spring;
 k = F_spring_max / delta_x;
