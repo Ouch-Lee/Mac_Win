@@ -32,16 +32,18 @@
 # include <stdlib.h>
 
 /******************************************************************************************/
-/* Íâ²¿½Ó¿Úº¯Êý*/
 
-/*µç»ú¿ØÖÆÃüÁî*/
-//Á¦¾Ø¿ØÖÆ
+void motor_close(uint8_t motor_address);
+void motor_start(uint8_t motor_address);
 void motor_torque_control(uint8_t motor_address,double iqValue);
 void motor_speed_control(uint8_t motor_address,double speedValue);
+void motor_multi_angl_control(uint8_t motor_address, int32_t angleControl, uint16_t maxSpeed);
 void motor_pause(uint8_t motor_address);
 
-/*µç»ú·´À¡Êý¾Ý»ñÈ¡ÃüÁî*/
+/*读取电机相关数据 */
+void read_multi_angle(uint8_t motor_address);
 void read_motor_position(uint8_t motor_address);
+
 //µç»ú¼ÓËÙ¶È
 void read_motor_Accelerate(uint8_t motor_address);
 //µç»ú×´Ì¬2

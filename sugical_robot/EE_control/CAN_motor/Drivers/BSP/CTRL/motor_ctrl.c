@@ -13,6 +13,26 @@
 # include <stdlib.h>
 # include "./BSP/CAN/can.h"
 
+void motor_close(uint8_t motor_address)
+{
+		uint8_t msg_v[8] = {0};
+		msg_v[0] = 0x80;	
+//		msg_v[1] = 0x00;
+//		msg_v[2] = 0x00;	
+//		msg_v[3] = 0x00;	
+//		msg_v[4] = 0x00;
+//		msg_v[5] = 0x00;
+//		msg_v[6] = 0x00;
+//		msg_v[7] = 0x00;
+		can_send_msg(motor_address + DEVICE_STD_ID, msg_v,8);
+}
+
+void motor_start(uint8_t motor_address)
+{
+		uint8_t msg_v[8] = {0};
+		msg_v[0] = 0x88;	
+		can_send_msg(motor_address + DEVICE_STD_ID, msg_v,8);
+}	
 
 
 void motor_torque_control(uint8_t motor_address, double iqValue)
@@ -68,20 +88,31 @@ void motor_speed_control(uint8_t motor_address, double speedValue)
     can_send_msg(motor_address,msg_v,8);
 }
 
-
-void motor_close(uint8_t motor_address)
+/**********************************************************
+主机发送该命令以控制电机的位置（多圈角度）
+1. 控制值 angleControl 为 int32_t 类型，对应实际位置为 0.01degree/LSB，即 36000 代表 360°，
+电机转动方向由目标位置和当前位置的差值决定。
+2. 控制值 maxSpeed 限制了电机转动的最大速度，为 uint16_t 类型，对应实际转速 1dps/LSB，
+即 360 代表 360dps。
+**********************************************************/	
+void motor_multi_angl_control(uint8_t motor_address, int32_t angleControl, uint16_t maxSpeed)
 {
-		uint8_t msg_v[8] = {0};
-		msg_v[0] = 0x80;	/* ¹¦ÄÜÂë */
-		msg_v[1] = 0x00;
-		msg_v[2] = 0x00;	
-		msg_v[3] = 0x00;	
-		msg_v[4] = 0x00;	
-		msg_v[5] = 0x00;	
-		msg_v[6] = 0x00;	
-		msg_v[7] = 0x00;	
 		
-		can_send_msg(motor_address,msg_v,8);
+		uint8_t command[8];
+    
+    // 命令字节
+    command[0] = 0xA4;
+    // NULL 字节
+    command[1] = 0x00;
+    // 速度限制低字节和高字节
+    command[2] = *(uint8_t *)&maxSpeed;
+    command[3] = *(uint8_t *)((uint8_t *)&maxSpeed + 1);
+    // 位置控制的低字节到高字节
+    command[4] = *(uint8_t *)&angleControl;
+    command[5] = *(uint8_t *)((uint8_t *)&angleControl + 1);
+    command[6] = *(uint8_t *)((uint8_t *)&angleControl + 2);
+    command[7] = *(uint8_t *)((uint8_t *)&angleControl + 3);
+    can_send_msg(motor_address + DEVICE_STD_ID,command,8);
 }
 
 void motor_pause(uint8_t motor_address)
@@ -146,9 +177,15 @@ void read_motor_Accelerate(uint8_t motor_address)
 }
 
 /**********************************************************
- this function is used to read the params about motor
+ these functions are used to read the params about motor
 
 **********************************************************/	
+void read_multi_angle(uint8_t motor_address)
+{
+		uint8_t msg_v[8] = {0}; 
+		msg_v[0] = 0x92;
+		can_send_msg(motor_address + DEVICE_STD_ID, msg_v, 8);	
+}
 
 void read_motor_State2(uint8_t motor_address, double *state)
 {

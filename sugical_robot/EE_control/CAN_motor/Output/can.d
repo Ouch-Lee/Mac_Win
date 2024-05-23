@@ -72,3 +72,4 @@
 ..\..\output\can.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\..\output\can.o: ..\..\User\main.h
 ..\..\output\can.o: ..\..\Drivers\./SYSTEM/delay/delay.h
+..\..\output\can.o: ..\..\Drivers\./BSP/CAN/can.h

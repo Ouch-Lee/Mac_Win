@@ -218,32 +218,6 @@ void CAN_Config(void)
  * @param       无
  * @retval      无
  */
-//void USB_LP_CAN1_RX0_IRQHandler(void)
-//{
-//    uint8_t rxbuf[8];
-//    uint32_t id;
-//    can_receive_msg(id, rxbuf);
-//    printf("id:%d\r\n", g_canx_rxheader.StdId);
-//    printf("ide:%d\r\n", g_canx_rxheader.IDE);
-//    printf("rtr:%d\r\n", g_canx_rxheader.RTR);
-//    printf("len:%d\r\n", g_canx_rxheader.DLC);
-
-//    printf("rxbuf[0]:%d\r\n", rxbuf[0]);
-//    printf("rxbuf[1]:%d\r\n", rxbuf[1]);
-//    printf("rxbuf[2]:%d\r\n", rxbuf[2]);
-//    printf("rxbuf[3]:%d\r\n", rxbuf[3]);
-//    printf("rxbuf[4]:%d\r\n", rxbuf[4]);
-//    printf("rxbuf[5]:%d\r\n", rxbuf[5]);
-//    printf("rxbuf[6]:%d\r\n", rxbuf[6]);
-//    printf("rxbuf[7]:%d\r\n", rxbuf[7]);
-//}
-//void CAN1_RX0_IRQHandler(){
-
-//}
-
-
-#endif
-
 void CAN1_RX0_IRQHandler()
 {
 	uint8_t msg_v[8];
@@ -267,9 +241,6 @@ void CAN1_RX0_IRQHandler()
 	}
 }
 
-
-
-
 void ProcessMotorCANMessage(uint32_t id, uint8_t *rxbuf, uint8_t len) {
     // 检查数据长度是否为8字节
     if (len != 8) {
@@ -278,43 +249,68 @@ void ProcessMotorCANMessage(uint32_t id, uint8_t *rxbuf, uint8_t len) {
     }
 
     // 打印接收到的8字节数据
-    printf("Received 8 bytes for ID 0x%03X: ", id);
-    for (int i = 0; i < len; ++i) {
-        printf("%02X ", rxbuf[i]);
-    }
-    printf("\n");
-
-    // 电机数据解码
-    if (rxbuf[0] == 0xA1) {
-        int16_t tau = (int16_t)(rxbuf[2] | (rxbuf[3] << 8));
-        int16_t speed = (int16_t)(rxbuf[4] | (rxbuf[5] << 8));
-        uint16_t position = (uint16_t)(rxbuf[6] | (rxbuf[7] << 8));
-
-        // 根据接收到的ID更新电机角度值
-        if (id > DEVICE_STD_ID && id <= (DEVICE_STD_ID + 5)) {
-            // 更新received_data数组中的角度值
-						switch (id) {
-								case 0x141: {
-										received_data[id - DEVICE_STD_ID - 1] = (double)position / 65535.0 * 360.0 - 185;
-										break;
-								}
-								case 0x142: {
-										received_data[id - DEVICE_STD_ID - 1] = (double)position / 65535.0 * 360.0 - 322;
-										break;
-								}
-								// 可以根据需要添加更多的case语句
-								default:
-										// 可以在这里处理未匹配到ID的情况
-										break;
+//    printf("Received 8 bytes for ID 0x%03X: ", id);
+//    for (int i = 0; i < len; ++i) {
+//        printf("%02X ", rxbuf[i]);
+//    }
+//    printf("\n");
+		
+		
+		switch(rxbuf[0]){
+			case 0x92:
+				handle_multi_angle(id, rxbuf);
+				break;
+//			case 0x92:
+//				hanlde_single_angle();
+//				break;
+//			case 0xA1:
+//				handle_state_2();
+//				break;
+				
 		}
-            
-        } else {
-            printf("Received message with unexpected ID: 0x%03X\n", id);
-        }
-    } else {
-        printf("Received message with wrong header byte: 0x%02X\n", rxbuf[0]);
-    }
 }
+
+/* 下面几个函数都是CAN接收到不同的返回帧后的处理函数 */
+
+void handle_multi_angle(uint32_t id, uint8_t *rxbuf) {
+    // 从rxbuf中解析出motorAngle
+    uint64_t tempMotorAngle = 0;
+    for (int i = 1; i <= 7; ++i) {  // 正确的范围应该是1到7
+        tempMotorAngle |= (uint64_t)(rxbuf[i]) << (8 * (i - 1));
+    }
+
+    // 处理符号扩展
+    int64_t motorAngle;
+    if (tempMotorAngle & (1ULL << 55)) { // 如果第55位（最高有效数据位）为1，表示负数
+        motorAngle = tempMotorAngle | 0xFF00000000000000ULL; // 符号扩展
+    } else {
+        motorAngle = tempMotorAngle;
+    }
+
+    // 由于角度数据是int64_t类型，我们需要将其转换为实际的角度值（单位为度）
+    // 由于单位是0.01°/LSB，所以需要乘以0.01来转换为度
+    float angle_in_degrees = motorAngle * 0.01;
+
+    // 存储到received_data数组中
+    // 检查id是否在有效范围内，避免数组越界
+    if (id >= DEVICE_STD_ID + 1 && id < DEVICE_STD_ID + 1 + MAX_DEVICES) {
+        received_data[id - DEVICE_STD_ID - 1] = angle_in_degrees;
+    } else {
+        printf("Error: Invalid ID received.\n");
+    }
+
+    // 打印角度值以供检查（可选）
+//    printf("Motor angle for ID 0x%03X: %f degrees\n", id, angle_in_degrees);
+}
+
+
+
+/* 上面几个函数都是CAN接收到不同的返回帧后的处理函数 */
+
+
+#endif
+
+
 
 /**
  * @brief       CAN 发送一组数据
@@ -377,26 +373,6 @@ uint8_t can_receive_msg(uint32_t id, uint8_t *buf)
   return g_canx_rxheader.DLC;
 }
 
-//uint8_t can_receive_msg(uint32_t id, uint8_t *buf)
-//{
-//    if (HAL_CAN_GetRxFifoFillLevel(&g_canx_handler, CAN_RX_FIFO0) == 0)     /* 没有接收到数据 */
-//    {
-//        return 0;
-//    }
-
-//    if (HAL_CAN_GetRxMessage(&g_canx_handler, CAN_RX_FIFO0, &g_canx_rxheader, buf) != HAL_OK)  /* 读取数据 */
-//    {
-//        return 0;
-//    }
-
-//    if (g_canx_rxheader.StdId!= id || g_canx_rxheader.IDE != CAN_ID_STD || g_canx_rxheader.RTR != CAN_RTR_DATA)       /* 接收到的ID不对 / 不是标准帧 / 不是数据帧 */
-//    {
-//        return 0;    
-//    }
-
-//    return g_canx_rxheader.DLC;
-
-//}
 /*********************************************************************************
 * @brief	HAL_CAN_RxFifo0MsgPendingCallback, called in can interrupt
 * @param	None

@@ -22,40 +22,50 @@ Dialog DLL:      TCM.DLL V1.14.4.0
  
 <h2>Project:</h2>
 E:\GitHub\Mac_win\Mac_Win\sugical_robot\EE_control\CAN_motor\Projects\MDK-ARM\atk_f407.uvprojx
-Project File Date:  04/24/2024
+Project File Date:  05/20/2024
 
 <h2>Output:</h2>
 Build target 'CAN'
 compiling main.c...
-..\..\Drivers\./BSP/CAN/can.h(70): warning:  #1295-D: Deprecated declaration CAN_Filter_Config - give arg types
+..\..\Drivers\./BSP/CAN/can.h(75): warning:  #1295-D: Deprecated declaration CAN_Filter_Config - give arg types
   void CAN_Filter_Config();
-..\..\Drivers\./BSP/CAN/can.h(78): warning:  #1295-D: Deprecated declaration CAN1_RX0_IRQHandler - give arg types
-  void CAN1_RX0_IRQHandler();
-..\..\User\main.c(66): warning:  #1295-D: Deprecated declaration send_CAN_array - give arg types
+..\..\Drivers\./BSP/CAN/can.h(75): warning:  #1295-D: Deprecated declaration CAN_Filter_Config - give arg types
+  void CAN_Filter_Config();
+..\..\User\main.c(57): warning:  #1295-D: Deprecated declaration update_encoder_angle - give arg types
+  void update_encoder_angle();
+..\..\User\main.c(58): warning:  #1295-D: Deprecated declaration send_CAN_array - give arg types
   void send_CAN_array(); 
-..\..\User\main.c(89): warning:  #177-D: variable "cnt" was declared but never referenced
+..\..\User\main.c(62): warning:  #1295-D: Deprecated declaration display_encoder_angle - give arg types
+  void display_encoder_angle();
+..\..\User\main.c(115): warning:  #111-D: statement is unreachable
+                                update_encoder_angle();
+..\..\User\main.c(90): warning:  #177-D: variable "cnt" was declared but never referenced
                 uint16_t cnt = 0;
-..\..\User\main.c(90): warning:  #177-D: variable "last_cnt" was declared but never referenced
+..\..\User\main.c(91): warning:  #177-D: variable "last_cnt" was declared but never referenced
       uint16_t last_cnt = 0;
-..\..\User\main.c(91): warning:  #177-D: variable "opt_cnt" was declared but never referenced
+..\..\User\main.c(92): warning:  #177-D: variable "opt_cnt" was declared but never referenced
       int opt_cnt = 0;
 ..\..\User\main.c(93): warning:  #177-D: variable "can_id" was declared but never referenced
                 uint32_t can_id = 0x1;
-..\..\User\main.c(43): warning:  #177-D: variable "iqControl" was declared but never referenced
+..\..\User\main.c(94): warning:  #177-D: variable "i" was declared but never referenced
+                    uint16_t i, j;
+..\..\User\main.c(94): warning:  #177-D: variable "j" was declared but never referenced
+                    uint16_t i, j;
+..\..\User\main.c(95): warning:  #177-D: variable "adcx" was declared but never referenced
+      uint16_t adcx;
+..\..\User\main.c(96): warning:  #177-D: variable "sum" was declared but never referenced
+      uint32_t sum;
+..\..\User\main.c(97): warning:  #177-D: variable "temp" was declared but never referenced
+                float temp;
+..\..\User\main.c(26): warning:  #177-D: variable "iqControl" was declared but never referenced
   static uint16_t iqControl = 15;
-..\..\User\main.c(44): warning:  #177-D: variable "speedControl" was declared but never referenced
+..\..\User\main.c(27): warning:  #177-D: variable "speedControl" was declared but never referenced
   static uint32_t speedControl = 150;
-..\..\User\main.c(46): warning:  #177-D: variable "motor_yaw_para" was declared but never referenced
-  static double motor_yaw_para[3] = {0.0, 0.0, 200.0};
-..\..\User\main.c(47): warning:  #177-D: variable "motor_pitch_para" was declared but never referenced
-  static double motor_pitch_para[3]  = {0.0, 0.0, 100.0}; 
-..\..\User\main.c(56): warning:  #177-D: variable "encoder_angle" was declared but never referenced
-  static double encoder_angle = 0.00;
-..\..\User\main.c: 12 warnings, 0 errors
+..\..\User\main.c: 17 warnings, 0 errors
 linking...
-Program Size: Code=22802 RO-data=13938 RW-data=440 ZI-data=1760  
+Program Size: Code=19444 RO-data=13772 RW-data=448 ZI-data=2664  
 FromELF: creating hex file...
-"..\..\Output\atk_f407.axf" - 0 Error(s), 12 Warning(s).
+"..\..\Output\atk_f407.axf" - 0 Error(s), 17 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   E:\GitHub\Mac_win\Mac_Win\sugical_robot\EE_control\CAN_motor\Projects\MDK-ARM\RTE

@@ -78,8 +78,12 @@
 ..\..\output\main.o: ..\..\Drivers\./BSP/KEY/key.h
 ..\..\output\main.o: ..\..\Drivers\./BSP/CAN/can.h
 ..\..\output\main.o: ..\..\Drivers\./BSP/CTRL/motor_ctrl.h
+..\..\output\main.o: ..\..\Drivers\./BSP/CAN/can.h
 ..\..\output\main.o: ..\..\Drivers\./BSP/EXTI/exti.h
 ..\..\output\main.o: ..\..\Drivers\./SYSTEM/tim/tim.h
 ..\..\output\main.o: ..\..\Drivers\./BSP/KF/kf.h
-..\..\output\main.o: ..\..\User\main.h
+..\..\output\main.o: ..\..\Drivers\./BSP/ADC/adc.h
+..\..\output\main.o: ..\..\Drivers\./BSP/DMA/dma.h
+..\..\output\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+..\..\output\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 ..\..\output\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

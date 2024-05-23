@@ -68,10 +68,13 @@
 ..\..\output\motor_ctrl.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_hcd.h
 ..\..\output\motor_ctrl.o: ..\..\Drivers\CMSIS\Include\core_cm4.h
 ..\..\output\motor_ctrl.o: ..\..\Drivers\./BSP/CAN/can.h
+..\..\output\motor_ctrl.o: ..\..\Drivers\./BSP/CAN/can.h
 ..\..\output\motor_ctrl.o: ..\..\Drivers\./BSP/CTRL/motor_ctrl.h
 ..\..\output\motor_ctrl.o: ..\..\Drivers\./SYSTEM/usart/usart.h
 ..\..\output\motor_ctrl.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\..\output\motor_ctrl.o: ..\..\Drivers\./SYSTEM/delay/delay.h
 ..\..\output\motor_ctrl.o: ..\..\Middlewares\./USMART/usmart.h
 ..\..\output\motor_ctrl.o: ..\..\Middlewares\./USMART/usmart_port.h
+..\..\output\motor_ctrl.o: ..\..\Drivers\./BSP/CAN/can.h
 ..\..\output\motor_ctrl.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+..\..\output\motor_ctrl.o: ..\..\Drivers\./BSP/CAN/can.h
