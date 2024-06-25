@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>binary/cylinderJointD1.STL</file>
+        <file>binary/cylinderJointS1.STL</file>
+        <file>binary/cylinderJointS2.STL</file>
+        <file>binary/cylinderJointM1.STL</file>
+        <file>binary/cylinderJointE1.STL</file>
+        <file>binary/cylinderJointD1_c1.STL</file>
+        <file>binary/cylinderJointE1_c1.STL</file>
+        <file>binary/cylinderJointM1_c1.STL</file>
+        <file>binary/cylinderJointS1_c1.STL</file>
+        <file>binary/cylinderJointD1_c2.STL</file>
+    </qresource>
+</RCC>

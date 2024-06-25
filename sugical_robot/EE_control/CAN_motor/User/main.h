@@ -25,7 +25,7 @@ extern "C" {
 #define vicon											HAL_GPIO_ReadPin(vicon_GPIO_PORT,vicon_GPIO_PIN);
 extern float CAN_sending_para[5];
 extern float received_data[5];
-	
+extern uint8_t output[24];  	
 	
 #define WristPosReport 0
 #define betax   76.314 

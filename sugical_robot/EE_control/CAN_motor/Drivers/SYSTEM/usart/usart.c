@@ -24,6 +24,7 @@
 
 #include "./SYSTEM/sys/sys.h"
 #include "./SYSTEM/usart/usart.h"
+#include "main.h"
 
 
 /* 如果使用os,则包括下面的头文件即可 */
@@ -89,7 +90,7 @@ int fputc(int ch, FILE *f)
 
 /* 接收缓冲, 最大USART_REC_LEN个字节. */
 uint8_t g_usart_rx_buf[USART_REC_LEN];
-
+uint8_t g_usart_tx_buf[USART_REC_LEN];
 /*  接收状态
  *  bit15，      接收完成标志
  *  bit14，      接收到0x0d
@@ -301,7 +302,23 @@ void usart_show_string(char *p)
     }
 }
 
-
+void User_UART_Send_ADC(void)
+{
+	uint8_t bufInd = 0;
+	g_usart_tx_buf[bufInd++] = 0xfe;
+	g_usart_tx_buf[bufInd++] = 0xfc;
+	
+	// 把所有的adc的数据都发送出去，目前总共是有6个adc通道
+	for (uint8_t channel = 0; channel < 24; ++channel)
+	{
+			g_usart_tx_buf[bufInd++] = output[channel];
+	}
+	g_usart_tx_buf[bufInd++] = 0x0d;
+	g_usart_tx_buf[bufInd++] = 0x0a;
+	HAL_UART_Transmit(&g_uart1_handle, g_usart_tx_buf, bufInd, 0x1FFF);
+	while(__HAL_UART_GET_FLAG(&g_uart1_handle,UART_FLAG_TC)!=SET);		//等待发送结束
+	//HAL_Delay(10);
+}
  
 
 

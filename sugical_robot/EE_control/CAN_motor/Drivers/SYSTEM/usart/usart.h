@@ -68,6 +68,7 @@ extern uint8_t g_rx_buffer[RXBUFFERSIZE];       /* HAL库USART接收Buffer */
 void usart_init(uint32_t baudrate);             /* 串口初始化函数 */
 void usart_show_xnum(uint32_t num, uint8_t len);  /* show digit in com */
 void usart_show_string(char *p); 
+void User_UART_Send_ADC(void);
 #endif
 
 

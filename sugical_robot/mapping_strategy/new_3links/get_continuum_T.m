@@ -1,5 +1,5 @@
 function T =  get_continuum_T(fi,ks)
-s = 1;
+s = 20;
 if (ks == 0)
     d3 = s;
 else

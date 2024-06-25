@@ -34,6 +34,7 @@
 /******************************************************************************************/
 
 void motor_close(uint8_t motor_address);
+void motor_stop(uint8_t motor_address);
 void motor_start(uint8_t motor_address);
 void motor_torque_control(uint8_t motor_address,double iqValue);
 void motor_speed_control(uint8_t motor_address,double speedValue);

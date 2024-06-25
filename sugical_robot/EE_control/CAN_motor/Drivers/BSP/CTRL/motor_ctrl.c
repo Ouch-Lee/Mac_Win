@@ -17,21 +17,22 @@ void motor_close(uint8_t motor_address)
 {
 		uint8_t msg_v[8] = {0};
 		msg_v[0] = 0x80;	
-//		msg_v[1] = 0x00;
-//		msg_v[2] = 0x00;	
-//		msg_v[3] = 0x00;	
-//		msg_v[4] = 0x00;
-//		msg_v[5] = 0x00;
-//		msg_v[6] = 0x00;
-//		msg_v[7] = 0x00;
 		can_send_msg(motor_address + DEVICE_STD_ID, msg_v,8);
 }
 
-void motor_start(uint8_t motor_address)
+void motor_stop(uint8_t motor_address)
 {
 		uint8_t msg_v[8] = {0};
-		msg_v[0] = 0x88;	
+		msg_v[0] = 0x81;	
 		can_send_msg(motor_address + DEVICE_STD_ID, msg_v,8);
+}
+
+
+void motor_start(uint8_t motor_address)
+{
+		uint8_t msg_v2[8] = {0};
+		msg_v2[0] = 0x88;	
+		can_send_msg(motor_address + DEVICE_STD_ID, msg_v2,8);
 }	
 
 

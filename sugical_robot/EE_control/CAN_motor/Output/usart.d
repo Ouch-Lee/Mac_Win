@@ -69,3 +69,6 @@
 ..\..\output\usart.o: ..\..\Drivers\CMSIS\Include\core_cm4.h
 ..\..\output\usart.o: ..\..\Drivers\./SYSTEM/usart/usart.h
 ..\..\output\usart.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\..\output\usart.o: ..\..\User\main.h
+..\..\output\usart.o: ..\..\Drivers\./SYSTEM/delay/delay.h
+..\..\output\usart.o: ..\..\Drivers\./BSP/CAN/can.h
