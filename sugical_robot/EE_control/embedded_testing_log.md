@@ -164,16 +164,16 @@ ok！发送和接收都能成功实现，接下来尝试一下连接两块单片
 
 * 首先给所有的标ID：
 
-  | ID   | 位置     | 备注 |
-  | ---- | -------- | ---- |
-  | 1    | 左；纵   |      |
-  | 2    | 左；横   |      |
-  | 3    | 左；俯仰 |      |
-  | 4    | 左；偏航 |      |
-  | 5    | 右；纵   |      |
-  | 6    | 右；横   |      |
-  | 7    | 右；俯仰 |      |
-  | 8    | 右；偏航 |      |
+  | ID   | 位置       | 初始角度  |
+  | ---- | ---------- | --------- |
+  | 1    | 左；base左 | 108 // 0  |
+  | 2    | 左；base右 | 168 => 93 |
+  | 3    | 左；偏航   | -95       |
+  | 4    | 左；俯仰   | 10        |
+  | 5    | 右；base左 | 100 =>-25 |
+  | 6    | 右；base右 | 130 => 77 |
+  | 7    | 右；偏航   | 180       |
+  | 8    | 右；俯仰   | 60        |
 
   为了测试Id是否成功设置，使用如下代码检查：
 
@@ -242,4 +242,84 @@ ok！发送和接收都能成功实现，接下来尝试一下连接两块单片
 | 12   |         |
 
 
+
+## 7-30迭代了结构以后新调试
+
+* [x] 首先在串口读取每个角度信息
+
+  电机8读不到数据，每一次读到都是0，但是只读单个电机的时候角度是正常的；解决：在发送索要角度数据时加一个2ms的延迟，使得有足够时间处理中断内容
+
+* [ ] 编写mapping.c 文件完成matlab中映射实现（**大工程**）
+
+  * [ ] 驱动空间到主端关节空间映射
+
+    已经有的参数是 十个角度信息，分为两组，每组
+    
+    * [x] 编写调试[plannar_5_bar_fk] 函数
+    
+      ```c
+      			Plannar5BarFKResult fkResult = plannar_5_bar_fk(motor_angles[0], motor_angles[1]);
+      			for (int i = 0; i < 5; ++i) {
+          printf("Forward Kinematics Result: x = %f, y = %f, u3 = %f\n",
+             fkResult.xc, fkResult.yc, fkResult.u4);
+      			}
+      ```
+    
+    * [x] 编写、调试驱动空间到关节空间函数
+    
+      ```c
+      			// test mapping_master_drive_joints 
+      			mapping_master_drive_joints(motor_angles);
+      			int i;
+      			for(i = 0; i < 10; i++) {
+          printf("array[%d] = %f ", i, joint_angles[i]);
+      }
+      			printf("\n");
+      ```
+    
+    * [x] 从主端 关节空间到从端关节空间
+    
+    * [ ] 严谨一点的话，生成100组数据，对比matlab和c运行的结果
+  
+  
+  
+## 8.6 完成大体代码的整理与融合
+
+* bug1：映射计算的过程没有注重角度制和弧度制
+
+* D1的变换是反的，其它几个参数，初始值不为零=》
+
+  * [x] 先把计算出来的主端参数验证一下，
+
+    ```c
+    	if(offset==0)
+    	{
+    		printf("theta1: %f, d2: %f, theta3: %f, theta4: %f, theta5: %f \r\n", radians_to_degrees(joint_angles[0]), joint_angles[1], 
+    		radians_to_degrees(joint_angles[2]),radians_to_degrees(joint_angles[3]), radians_to_degrees(joint_angles[4]));
+    	}
+    			if(offset==0)
+    	{
+    		printf("D1: %f, alpha2: %f, Phi3: %f, alpha4: %f, Theta5: %f \r\n", slave_joint_angles[0], radians_to_degrees(slave_joint_angles[1]), 
+    		radians_to_degrees(slave_joint_angles[2]),radians_to_degrees(slave_joint_angles[3]), radians_to_degrees(slave_joint_angles[4]));
+    	}
+    ```
+  
+  * [x] 然后从端的关节参数：其中\Phi3的验证比较困难，通过采取STM32串口打印的数据，和matlab进行比较，没有问题
+  
+  * [x] 最后一步到单元关节的参数
+  
+  
+  
+  
+  
+
+## 模式控制切换
+
+goal：通过按key_up键实现模式切换，红色灯对应绝对模式，绿色对应增量模式
+
+
+
+  
+
+  
 

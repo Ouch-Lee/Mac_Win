@@ -14,10 +14,10 @@
 
 目标，绘制出末端点的工作空间。论文提供的是代数法的求解方法，但是我解不出来。自己推到了几何法，几何法的问题是，同一个角度可能存在两种情况，也就是一个在上一个在下的情况（所以需要在theta3这个地方再加一个编码器）那我。。。末端正向运动学不就直接出来了。。。
 $$
-x_b = l_1 * cos(\alpha_1),
-    y_b = l_1 * sin(\alpha_1); \\
-    x_d = l_5 + l4 * cos(\alpha_4),
-    y_d = l_4 * sin(\alpha_4); \\
+x_b = l_1 * cos(\lambda_1),
+    y_b = l_1 * sin(\lambda_1); \\
+    x_d = l_5 + l4 * cos(\lambda_4),
+    y_d = l_4 * sin(\lambda_4); \\
     BD = \sqrt((xd - xb)^2 + (yd - yb)^2) \\
 $$
 
@@ -74,6 +74,11 @@ https://blog.csdn.net/qq_36014310/article/details/76924980
 
 深沟轴承换为角接触轴承 需要 10 -15 个
 
+轴承：
+
+* [x] 推力轴承i6o19 x 6
+* [ ] 
+
 
 
 需要的螺栓：
@@ -86,6 +91,10 @@ https://blog.csdn.net/qq_36014310/article/details/76924980
 * [x] m2 沉头 x 5
 * [x] M6螺母
 * [x] M4 螺母
+* [x] phi6塞打螺栓x20
+* [x] phi6塞打螺栓x25
+* [x] phi6塞打螺栓x40
+* [ ] 
 
  
 

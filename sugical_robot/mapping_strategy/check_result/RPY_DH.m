@@ -15,11 +15,11 @@ function T_RPY = RPY_DH(t3_input, t4_input, t5_input)
 h = 15;
 l = 20;
 % 为了适应{0}和世界坐标系，在前面添加一个变化
-A_pre = modified_DH(0, 0, 0, pi/2);
+% A_pre = modified_DH(0, 0, 0, pi/2);
 
 % i = 3
-offset_t3 = pi/2;
-t3 = t3_input + offset_t3;  % 修改这里改变theta_3
+% offset_t3 = pi/2;
+t3 = t3_input + pi/2; % + offset_t3;  % 修改这里改变theta_3
 alp_t2 = pi/2;
 A3 = modified_DH(0 ,alp_t2, h, t3);
 
@@ -37,7 +37,7 @@ alp_t5 = pi/2;
 A5 = modified_DH(0, alp_t5, l, t5);
 
 
-T_RPY = A_pre*  A3 * A4 * A5;% * A4 * A5);
+T_RPY =  A3 * A4 * A5;% * A4 * A5); A_pre* 
 % disp(T_RPY)
 
 end

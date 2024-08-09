@@ -6,7 +6,9 @@
 
   从自由度、**三角测量性**、分节几个方面总结了常见的手术机器人，特征上比较有参考性，但是文章太老了，不具有实时性
 
-  * 
+* [用于内镜柔性机器人的分析](https://ieeexplore.ieee.org/document/9779312?denied=)
+
+  很全面的分析了柔性机器人在手术上的优缺点，以及具体挑战，可以启发类的论文，背景里面也可以做参考参考
 
 * [介绍NOTES的综述](https://journals.lww.com/annalsofsurgery/pages/articleviewer.aspx?year=2008&issue=04000&article=00005&type=Fulltext)
 
