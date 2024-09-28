@@ -51,8 +51,8 @@ int main(void)
     usmart_dev.init(84);                    /* 初始化USMART */
 		encoder_init(); 
 		MX_TIM5_Init();
-		key_init();                             /* 初始化按键 */
-		led_init();                             /* 初始化LED */
+//		key_init();                             /* 初始化按键 */
+//		led_init();                             /* 初始化LED */
 		HAL_TIM_Encoder_Start(&htim5, TIM_CHANNEL_ALL);
 //		KalmanFilter_init(&KF_1, 0.1, 16);
     CAN_Config(); // init can
@@ -74,6 +74,18 @@ int main(void)
 								HAL_Delay(20);
 							}
 		
+							
+							
+		while(1)
+		{
+				update_encoder_angle();
+				get_all_motor_angles();
+				send_CAN_array_0(motor_encoder_angles);
+				print_sent_data(motor_encoder_angles, 10);
+				HAL_Delay(10);
+		}
+		
+		
 		while (1)
     {	
 				
@@ -81,7 +93,10 @@ int main(void)
 //				display_encoder_angle();
 				/*将所有读取的编码器角度存于motor_encoder_angles中，角度
 				经过偏置处理，符合[这里需要补充一张图]中角度的规定*/
-//				get_all_motor_angles();
+				get_all_motor_angles();
+//				Mapping_ABS(motor_encoder_angles);
+//				send_CAN_array_0();
+//				send_CAN_array(CAN_sending_para, slave_unit_joint_angles);
 				/* 通过按键选择控制模式，进入不同处理  */
 				KEY0_Press = ModeSwitch();                  /* 得到键值 */
 				if(KEY0_Press) ControlMode = !ControlMode;  // 状态翻转
@@ -106,9 +121,7 @@ int main(void)
 					default : break;
 				
 				}	
-//				print_sent_data(CAN_sending_para, 5);
-//				float_2_uint16(CAN_sending_para, output);  // 把float数据转为 uint8_t
-//				User_UART_Send_ADC();
+				print_sent_data(CAN_sending_para, 5);
 				HAL_Delay(10);
     }
 }

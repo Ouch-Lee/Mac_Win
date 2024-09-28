@@ -50,6 +50,7 @@ typedef struct {
 #define MAX_DEVICES 8  // 示例设备数量
 #define MASTER_SLAVE_ID          0x131   // sending CAN msg to slave
 #define DEVICE_STD_BOARDCAST_ID	(0x280)
+#define MASTER_PC_ID 						(0x120)  // 方便电脑接受数据时滤波处理
 typedef  CAN_TxHeaderTypeDef CANTxMsg;
 typedef  CAN_RxHeaderTypeDef CANRxMsg;
 /******************************************************************************************/

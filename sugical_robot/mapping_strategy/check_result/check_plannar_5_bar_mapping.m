@@ -8,7 +8,12 @@ beta_3 =  deg2rad(0);
 beta_4 =  deg2rad(0);
 beta_5 =  deg2rad(0);
 l1 = 8; l2 =8; l3 =8; l4 =8; l5 = 8;
-[xc, yc, u3] = plannar_5_bar_fk(beta_1, beta_2);
+[xc, yc,u2, u3] = plannar_5_bar_fk(beta_1, beta_2);
+
+% 定义左右手
+LEFT = 0;
+RIGHT = 1;
+hand = RIGHT;
 beta_4_t = pi - u3;
 %% 计算实际平面五连杆末端的齐次变换矩阵
 DH_para_1 = [0, 0, 0, beta_2;
@@ -34,7 +39,13 @@ end
 %% 计算经变换后等效三连杆末端的齐次变换矩阵
 theta_1 = atan((0.5*l5 - xc) / yc);
 d_2 = sqrt((xc - 0.5*l5)^2 + yc^2);
-delta_3 = (theta_1 + beta_4_t - 0.2*pi);
+if (hand == LEFT)
+    delta_3 = theta_1 - u2 + 0.2*pi;% 电机固定在杆Ab上时
+else
+    delta_3 = (theta_1 + beta_4_t - 0.2*pi); % 电机固定在杆DE上时
+end
+
+
 theta_3 = beta_3 - delta_3;
 DH_para_2 = [0, 0, 0, theta_1;
              0, -pi/2, d_2, 0;

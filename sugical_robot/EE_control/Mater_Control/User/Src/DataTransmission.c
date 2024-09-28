@@ -24,9 +24,10 @@
 /***	SPECIFIC INIT CONFIGURATION	***/
 float CAN_sending_para[12];  // 存储要发给从端的12个角度 0-3对应左手4个电机，4,5为左手两个编码；6-11对应右手
 float received_data[8]; // store message from motor
-float motor_encoder_angles[10];
+float motor_encoder_angles[10]; // 因为后续映射不需要用到rolling关节，因此这里只用10个数，而没有管两个rolling关节
 uint8_t output[24];   // 用于向上位机发送24位数据
 
+/* 获取10个夹取以外的关节角度 */
 void get_all_motor_angles(void)
 {
 					// 经过这个for循环，获取了8个电机的角度并存在received_data[8]中
@@ -54,18 +55,26 @@ void get_all_motor_angles(void)
 }
 
 
-void send_CAN_num(uint32_t can_id){
-		uint8_t data_to_send[8];
-		 double d = CAN_sending_para[2];
-		for (int j = 0; j < 8; j++) {
-            data_to_send[j] = *((uint8_t *)&d + j);
+void send_CAN_array_0(float input_para[10]) {
+		uint8_t data_to_send[8]; // Buffer for two floats (8 bytes)
+    
+    for (int i = 0; i < 10; i += 2) {
+        uint32_t can_id = MASTER_PC_ID + i / 2; // Construct unique CAN ID
+
+        // Copy the first float
+        memcpy(data_to_send, &input_para[i], sizeof(float));
+        // Copy the second float
+        memcpy(data_to_send + 4, &input_para[i + 1], sizeof(float));
+
+        // Call can_send_msg to send the data
+        if (can_send_msg(can_id, data_to_send, sizeof(data_to_send)) != 0) {
+            // Handle failure to send
+            printf("Failed to send CAN message with ID %x\n", can_id);
+            break;
         }
-			uint8_t send_status = can_send_msg(can_id, data_to_send, 8);
-				
-				if (send_status != 0) {
-            // 处理发送失败的情况
-            printf("fail to send \r\n");
-        }
+        // Introduce a delay between CAN messages
+        HAL_Delay(2); // Uncomment this line in actual hardware code
+    }
 }
 
 void send_CAN_array(float this_CAN_sending_para[12], float input_para[10]) {

@@ -1,5 +1,11 @@
 # check_result_readme
 
+TODO：
+
+应该写一个main函数，作为check过程的路口
+
+
+
 ## 代码说明
 
 * 

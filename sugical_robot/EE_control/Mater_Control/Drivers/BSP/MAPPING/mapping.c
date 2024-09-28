@@ -34,6 +34,7 @@ void Mapping_ABS(float the_motor_angles[])  // the_motor_anglesÎª´«ÈëµÄ²âÁ¿Öµ£¬³
 			}
 }
 
+/* ÊäÈë²ÎÊıÎª¶ÁÈ¡µÄ10¸ö½Ç¶È */
 void Mapping_INCREMENT(float the_motor_angles[])
 {
 	mapping_master_drive_joints(the_motor_angles, INCREMENT_MODE); // ÏÈµÃµ½Ö÷¶Ë¹Ø½Ú¿Õ¼ä£¬È»ºóÈÃ¹Ø½Ú¿´¿Õ¼äºÍ´Ó¶Ëµç»úÒ»Ò»¶ÔÓ¦

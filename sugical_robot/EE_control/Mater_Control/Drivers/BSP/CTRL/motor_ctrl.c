@@ -20,7 +20,7 @@
 /***	SPECIFIC INIT CONFIGURATION	***/
 uint8_t motor_IDs[8] = {1, 2, 3, 4, 5, 6, 7, 8};
 float init_angle[8] = {108.00f, 168.00f, -95.00f, 10.00f, 100.00f, 130.00f, 180.00f, 60.00f} ; // change the para to change init angle {160.00f, 0.00f, -110.00f, -115.00f, 0.00f, 20.00f, 0.00f, 186.00f}
-float offset_angle[8] = {0.0f, 93.0f, -95.00f, 10.00f, -25.0f, 77.0f, 188.00f, 60.00f};
+float offset_angle[8] = {0.0f, -173.0f, -90.00f, 10.00f, -25.0f, 77.0f, 0.00f, 60.00f};
 // about encoder
 float encoder_angle[6];  // 实际需要的角度是第2 3 4 5个元素
 // encoder + adc 相关参数
@@ -241,7 +241,7 @@ void display_encoder_angle() {
 /**
  * @brief       最新版的模拟量编码器更新函数，用于更新并储存最新的角度
  *   @note      
- * @param       void
+ * @param       具体引脚分布见<STM32 IO表.md>
  * @retval      void
  */
 void update_encoder_angle() {
