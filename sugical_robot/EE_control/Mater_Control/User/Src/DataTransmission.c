@@ -33,7 +33,7 @@ void get_all_motor_angles(void)
 					// 经过这个for循环，获取了8个电机的角度并存在received_data[8]中
 				for(int i=0; i<8; i++){
 					read_multi_angle(motor_IDs[i]);
-					HAL_Delay(5); // 先看看发送的CAN数据是否正确=>通过
+//					HAL_Delay(5); // 先看看发送的CAN数据是否正确=>通过
 				}
 				// 需要处理一个初始偏置  TODO;
 				float motor_anlge_offset[8];
@@ -73,7 +73,7 @@ void send_CAN_array_0(float input_para[10]) {
             break;
         }
         // Introduce a delay between CAN messages
-        HAL_Delay(2); // Uncomment this line in actual hardware code
+        HAL_Delay(1); // Uncomment this line in actual hardware code
     }
 }
 

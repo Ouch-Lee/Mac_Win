@@ -31,10 +31,6 @@ why：为什么会产生这个震颤？
   
      
 
-
-
-
-
 如果没有人为的干涉，手术机器人在工作时末端会存在较为严重的震颤情况，这个是毋庸置疑，震颤主要来源于以下几个方面：
 
 * 生理震颤是一种正常的、低频的肌肉微抖动，通常在成人中频率约为每秒10次。它是由多个突触耦合的神经系统与外部效应器的生物力学、物理和电特性之间的动态相互作用引起的。[PHYSIOLOGICAL TREMOR](https://scholar.google.com/scholar?hl=zh-CN&as_sdt=0%2C5&q=PHYSIOLOGICAL+TREMOR&btnG=) ，Tremor From Pathogenesis to Treatment。在长时间的劳作之后，生理震颤会加剧，疲劳引起的手部震颤 (FIT) 是一种不可避免的现象，它极大地限制了长时间腹腔镜手术的手术操作的准确性。肌肉疲劳引起的手部震颤具有高度非线性和非平稳特性，需要不同于传统滤波器的滤波策略。
@@ -56,6 +52,22 @@ why：为什么会产生这个震颤？
 
 1. 使用电脑接受CAN发来的数据，并存在txt文件中
 2. python/matlab读取txt文件，然后根据之前的函数绘制末端点+箭头改变情况
+
+### 大伙都说有，其实明显吗
+
+[缝合模拟](https://www.youtube.com/watch?v=b09keuSVxwE)：在实验中没有观察到明显的震颤与手抖，因为在运动的过程中，生理震颤的影响几乎可以不略不计
+
+[套环实验](https://www.youtube.com/watch?v=Oh-YZ2qMN3Q)：这个实验中也观察不到操作者手部明显的震颤
+
+[直观的手部演示](https://www.youtube.com/watch?v=PBN54PNdr1U)：视频主要演示动态的过程，生理震颤带来的抖动在动态过程中
+
+[套环视频](https://www.youtube.com/watch?v=pqrvG3chkdk)：也是动态的吧，几乎没有什么震颤
+
+反思之前出现的问题，过于关注静态，而且是没有拖住的情况，但是实际手术中，手更多是一个运动的状态，这个时候，生理震颤反而不明显
+
+尝试画一个circle，及时一些运动观察一下轨迹
+
+
 
 
 
@@ -88,7 +100,7 @@ why：为什么会产生这个震颤？
 
 
 
-## 我怎么做
+## ！我怎么做
 
 首先，我认为手术的人为误差并不只来源于生理震颤，除此之外呼吸引起的手指运动也是一个总要的影响因素，更重要的人手无法在空间中完成精准的运动，必然会出现偏差；前两者在静态误差中更为明显，后者主要影响动态误差，针对不同的情况，不同的震颤来源，需要采用不用的消除方法
 
@@ -104,7 +116,13 @@ why：为什么会产生这个震颤？
 
 
 
+### 针对constant震颤
 
+采用类似于噪声抑制的算法（需要多了解了解）
+
+一篇[TRO论文](https://ieeexplore.ieee.org/abstract/document/1391016)中采用[重复控制器](E:\GitHub\Mac_win\Mac_Win\sugical_robot\tremor_research\REF_TREMOR\Tremor_resolve\重复控制.md)的策略消除呼吸带来的影响
+
+[具体方法看这里](E:\GitHub\Mac_win\Mac_Win\sugical_robot\tremor_research\REF_TREMOR\Tremor_resolve\Tremor_solve.md)
 
 
 

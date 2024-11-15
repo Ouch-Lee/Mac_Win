@@ -69,10 +69,10 @@ int main(void)
 		// tigger to torque mode
 //		ready_work();
 		HAL_Delay(1000);
-		for(int i=0; i<8;i++){
-								motor_torque_control(motor_IDs[i], 0);
-								HAL_Delay(20);
-							}
+//		for(int i=0; i<8;i++){
+//								motor_torque_control(motor_IDs[i], 0);
+//								HAL_Delay(20);
+//							}
 		
 							
 							
@@ -81,8 +81,8 @@ int main(void)
 				update_encoder_angle();
 				get_all_motor_angles();
 				send_CAN_array_0(motor_encoder_angles);
-				print_sent_data(motor_encoder_angles, 10);
-				HAL_Delay(10);
+//				print_sent_data(motor_encoder_angles, 10);
+				HAL_Delay(3);
 		}
 		
 		
