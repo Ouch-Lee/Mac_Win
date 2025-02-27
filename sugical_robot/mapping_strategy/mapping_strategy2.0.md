@@ -186,6 +186,8 @@ $f_x$ 是由两段在x轴上的贡献决定
 
 ![](五连杆模型.jpg)
 
+平面五连杆正向运动学主要参考[这里](E:\GitHub\Mac_win\Mac_Win\sugical_robot\mechanical_model\Readme_planar 5 links.md)
+
 这里主要推导一下从主端驱动空间 $[\beta_1, \beta_2, \beta_3]$到关节空间 $[\theta_1, d_2, \theta_3]$的求解过程；
 
 图中u1 和 u5对应 $\beta_1, \beta_2$; 电机角度与初始角度（红色箭头）夹角为$\beta_3$

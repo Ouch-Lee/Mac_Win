@@ -2,11 +2,11 @@
 % 输入一组驱动空间变量
 clc;
 clear all;
-beta_1 =  deg2rad(108);
-beta_2 =  deg2rad(72);
-beta_3 =  deg2rad(0);
-beta_4 =  deg2rad(0);
-beta_5 =  deg2rad(0);
+beta_1 =  deg2rad(120);
+beta_2 =  deg2rad(100);
+beta_3 =  deg2rad(30);
+beta_4 =  deg2rad(30);
+beta_5 =  deg2rad(-30);
 l1 = 8; l2 =8; l3 =8; l4 =8; l5 = 8;
 [xc, yc,u2, u3] = plannar_5_bar_fk(beta_1, beta_2);
 

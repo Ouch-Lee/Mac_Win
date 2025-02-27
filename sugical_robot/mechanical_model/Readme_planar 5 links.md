@@ -12,7 +12,7 @@
 
 ## 运动学模型
 
-目标，绘制出末端点的工作空间。论文提供的是代数法的求解方法，但是我解不出来。自己推到了几何法，几何法的问题是，同一个角度可能存在两种情况，也就是一个在上一个在下的情况（所以需要在theta3这个地方再加一个编码器）那我。。。末端正向运动学不就直接出来了。。。
+![](五连杆模型.jpg)
 $$
 x_b = l_1 * cos(\lambda_1),
     y_b = l_1 * sin(\lambda_1); \\
@@ -27,6 +27,8 @@ $$
 \alpha_2 = \phi_1 + \phi_2
 $$
 
+具体的实现可以参照[代码](E:\GitHub\Mac_win\Mac_Win\sugical_robot\mechanical_model\plannar_5_links\planar_5_bar_foward_my.m)
+
 为了满足规范的角度规定（如下图），得到新的公式结果：
 $$
 \alpha_2 =( \phi_1 + \phi_2 ) - \alpha_1  \\
@@ -37,12 +39,6 @@ $$
 
 
 ![](E:\GitHub\Mac_win\Mac_Win\sugical_robot\mechanical_model\plannar_5_links\5bar_model.png)
-
-至于末端工作空间，一个简单的方案是进行遍历
-
-
-
-
 
 根据论文里面的公式，可以求解末端端点，但是
 
@@ -60,9 +56,19 @@ https://blog.csdn.net/qq_36014310/article/details/76924980
 
 
 
+## 工作空间分析
 
+得到五连杆的正向运动学模型后，通过循环的方法似乎可以得到原始的工作空间
 
+![ws_half](plannar_5_links/ws_half.jpg)
 
+上面是不考虑对称位型的工作空间，下面红色是添加对称位型后的工作空间；其实也就多了中间一小部分，因此为了简化问题，这一部分确实可以舍弃，因此【需要考虑一些机械限位】
+
+![ws_whole](plannar_5_links/ws_whole.jpg)
+
+相比之下，通过缩短两个关节之间的距离，可以明显增大工作空间
+
+![ws_half_l5=4](plannar_5_links/ws_half_l5=4.jpg)
 
 ## 结构设计
 

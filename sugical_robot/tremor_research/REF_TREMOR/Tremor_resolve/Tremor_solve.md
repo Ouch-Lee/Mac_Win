@@ -113,7 +113,7 @@ https://www.sciencedirect.com/science/article/pii/S1746809421009058#ab005
 
 
 
-### KF自成一派
+### KF为代表的预测模型
 
 很惊奇的是，竟然没有多少关于实时滤波的研究？就是像KF滤波一样是一个实时迭代滤波算法
 
